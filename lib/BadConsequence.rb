@@ -58,12 +58,13 @@ module Napakalaki
 			@nVisibleTreasures = 0
 		end
 		
-		attr_reader :text :levels :nVisibleTreasures :nHiddenTreasures
+		attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures
 		#esto o getText, getLevels, etc.?
 
 		def toString()
 			  return 'Text = ' + @text + '\nLevels = ' + @levels + '\nnVisibleTreasures = '\
 			  + @nVisibleTreasures + '\nnHiddenTreasures = ' + @nHiddenTreasures + '\nDeath = ' + @death
 		end
-
+	end
+end
 
