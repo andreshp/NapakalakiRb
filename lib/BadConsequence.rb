@@ -1,6 +1,13 @@
+######################################################################
+# Authors: Andrés Herrera Poyatos, Juan Luis Suárez Díaz
+# Universidad of Granada, March, 2015
+# Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
+#######################################################################
 
-class BadConsequence
-	
+module Napakalaki
+	  class BadConsequence
+		
+
 =begin No puedo poner los tres :(
 	def initialize(text, levels, nVisible, nHidden)
 		  @text = text
