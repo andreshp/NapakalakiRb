@@ -4,41 +4,27 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-module Napakalaki
 
-# @author andreshp, jlsuarez
-
-# Public: Prize Class.
 # This class contains the data related to the prizes in Napakalaki game.
 # 
-# Examples
-#
+# @author andreshp, jlsuarez
 class Prize
 
-    #--------------- Private Attributes ---------------#
+    # Gets treasures or levels in the prize.
+    attr_reader :treasures, :levels
 
-    # Amount of treasures bonus.
-    treasures
-    
-    /**
-     * Amount of levels bonus.
-     */
-    private int levels;
-
-    # Public: Duplicate some text an arbitrary number of times.
+    # Constructor that initialize treasures and levels.
     #
-    # text  - The String to be duplicated.
-    # count - The Integer number of times to duplicate the text.
-    #
-    # Examples
-    #
-    #   multiplex("Tom", 4)
-    #   # => "TomTomTomTom"
-    #
-    # Returns the duplicated String.
-    def initialize(args)
-        
+    # @param treasures [int] Amount of treasures bonus.
+    # @param levels [int] Amount of levels bonus.
+    def initialize(treasures, levels)
+        @treasures = treasures
+        @levels = levels
     end
-    
-    
+
+    # Gets a string with the prize's info.
+    # @return string with information.
+    def toString
+        "Treasures = " + treasures.to_s + " levels = " + levels.to_s
+
 end
