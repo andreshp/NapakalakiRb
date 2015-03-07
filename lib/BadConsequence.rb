@@ -29,9 +29,10 @@ class BadConsequence
 		  @specificHiddenTreasures = tHidden
 	end
 =end
-	def initialize(text,levels,nVisible,nHidden,death,tVisible,tHidden)
+	def initialize(text,levels,death,nVisible,nHidden,tVisible,tHidden)
 		@text = text
 		@death = death
+		@levels = levels
 
 		@nVisibleTreasures = nVisible
 		@nHiddenTreasures = nHidden
