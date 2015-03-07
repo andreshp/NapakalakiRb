@@ -13,7 +13,8 @@ class Prize
     # Gets treasures or levels in the prize.
     attr_reader :treasures, :levels
 
-    # Constructor that initialize treasures and levels.
+    # Initialize method. 
+    # Initializes treasures and levels.
     #
     # @param treasures [int] Amount of treasures bonus.
     # @param levels [int] Amount of levels bonus.

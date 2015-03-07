@@ -2,6 +2,9 @@
 
 The game Napakalaki developped in Ruby for PDO at University of Granada.
 
+![](https://img.shields.io/badge/language-Ruby-red.svg)
+![](https://img.shields.io/badge/license-GNU-blue.svg)
+
 ## Things to do
 
 - Classes to finish
