@@ -10,6 +10,8 @@ The game Napakalaki developped in Ruby for PDO at University of Granada.
 
 Really cool monsters!
 
+![Angeles](https://github.com/andreshp/NapakalakiRb/blob/master/images/AngelesDeLaNocheIbicenca.png)
+
 ## Examples
 
 ## Requirements
