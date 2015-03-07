@@ -4,33 +4,30 @@ The game Napakalaki developped in Ruby for PDO at University of Granada.
 
 ![](https://img.shields.io/badge/language-Ruby-red.svg)
 ![](https://img.shields.io/badge/license-GNU-blue.svg)
-
-## Things to do
-
-- Classes to finish
-    + Prize
-    + BadConsequence
-    + Monster
-- Make an Enum called TreasureKind with the values {ARMOR, ONEHAND, BOTHHANDS, HELMET, SHOE, NECKLACE}.
-- Add the monsters in sesion 2.
+![](https://img.shields.io/badge/University-Granada-orange.svg)
 
 ## Features
 
-* FIXME (list of features and unsolved problems)
+Really cool monsters!
 
 ## Examples
 
-    FIXME (code sample of usage)
-
 ## Requirements
-
-* FIXME (list of requirements)
 
 ## Install
 
-* FIXME (sudo gem install, anything else)
+To generate the documentation execute:
+
+~~~bash
+yard doc ./lib
+~~~
+
+## Programs Used
+
+- [Yard](http://yardoc.org/) for the documentation.
+- [Bones](https://github.com/TwP/bones) to generate the directories.
 
 ## Authors
 
-* andreshp (Andrés Herrera Poyatos)
-* jlsuarezdiaz (Juan Luis Suárez Díaz)
+- Andrés Herrera Poyatos ([andreshp](https://github.com/andreshp))
+- Juan Luis Suárez Díaz ([jlsuarezdiaz](https://github.com/jlsuarezdiaz))
