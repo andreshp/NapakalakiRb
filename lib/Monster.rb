@@ -9,7 +9,6 @@
 # in Napakalaki game.
 # 
 # @author andreshp, jlsuarez
-#
 class Monster
         
     # Gets name of the monster.
@@ -20,10 +19,10 @@ class Monster
 
     # Initialize method.
     # Initializes name, combatlevel, prize, badCons.
-    # @param name Monster's name.
-    # @param level Monster's level.
-    # @param bc Bad consequence.
-    # @param prize Prize.
+    # @param name [string] Monster's name.
+    # @param level [int] Monster's level.
+    # @param bc [BadConsequence] Bad consequence of losing to the monster.
+    # @param prize [Prize] Prize for winning to the monster.
     def initialize(name, level, bc, prize)
         @name = name
         @combatLevel = level
