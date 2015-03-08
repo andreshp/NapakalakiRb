@@ -4,6 +4,6 @@ rvm:
   - 2.2.1
 
 before_install:
-  - sudo gem install bones
+  - gem install bones
 
 script: rake document && rake test:run
