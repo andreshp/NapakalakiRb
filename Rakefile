@@ -7,13 +7,13 @@
 begin
     require 'bones'
 rescue LoadError
-    abort '### Please install the "bones" gem ###'
+    abort '### Please install the "bones" gem: `gem install bones` ###'
 end
 
 task :default => 'test:run'
 
 #task 'gem:release' => 'test:run'
-#
+
 namespace :test do
     desc "Pass a test"
     task :run do
@@ -29,9 +29,11 @@ task :document do |t|
 end
 
 Bones {
-    name     'napakalaki'
-    authors  'Andrés Herrera Poyatos, Juan Luis Suárez Díaz'
-    email    'andreshp9@gmail.com'
-    url      'https://github.com/andreshp/NapakalakiRb'
+    name          'napakalaki'
+    authors       'Andrés Herrera Poyatos, Juan Luis Suárez Díaz'
+    email         'andreshp9@gmail.com'
+    url           'https://github.com/andreshp/NapakalakiRb'
+#    test.file     'test/testNapakalaki.rb'
+    release_name  'Napakalaki'
 }
 

@@ -67,10 +67,12 @@ class BadConsequence
     private_class_method :new
 
     # Returns a string with the Bad Consequence instance contents.
+    # @param spaces [int] Spaces in each line from second to end.
     # @return String with the contents.
-    def toString()
-          return "Text = " + text.to_s + "\nLevels = " + levels.to_s + "\nnVisibleTreasures = "\
-          + nVisibleTreasures.to_s + "\nnHiddenTreasures = " + nHiddenTreasures.to_s + "\nDeath = " + death.to_s
+    def toString(spaces = 0)
+        str_spaces = "\s"*spaces
+        str_spaces + "Text = " + text.to_s + "\n" + str_spaces + "Levels = " + levels.to_s + "\n" + str_spaces + "nVisibleTreasures = " + 
+        nVisibleTreasures.to_s + "\n" + str_spaces + "nHiddenTreasures = " + nHiddenTreasures.to_s + "\n" + str_spaces + "Death = " + death.to_s
     end
 end
 
