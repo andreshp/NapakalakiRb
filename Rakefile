@@ -21,11 +21,11 @@ namespace :test do
     end
 end
 
-desc "Build the documentation"
-task :document do
-    open_doc = ENV["OPEN"] || true
+desc "Build the documentation. Option: OPEN=false (not open a broswer)"
+task :document do |t|
+    open_doc = ENV["OPEN"] || "true"
     sh "yard doc ./lib"
-    if open_doc then sh "xdg-open ./doc/index.html"
+    if open_doc == "true" then sh "xdg-open ./doc/index.html" end
 end
 
 Bones {
