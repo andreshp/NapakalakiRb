@@ -23,7 +23,9 @@ end
 
 desc "Build the documentation"
 task :document do
+    open_doc = ENV["OPEN"] || true
     sh "yard doc ./lib"
+    if open_doc then sh "xdg-open ./doc/index.html"
 end
 
 Bones {

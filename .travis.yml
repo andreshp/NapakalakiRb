@@ -7,4 +7,4 @@ before_install:
   - gem install bones
   - gem install yard
 
-script: rake document && rake test:run
+script: rake OPEN=false document && rake test:run
