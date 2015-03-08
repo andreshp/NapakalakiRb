@@ -9,26 +9,32 @@ The game Napakalaki developped in Ruby for PDO at University of Granada.
 
 ## Features
 
-Really cool monsters!
+- Really cool monsters!
 
 ![Angeles](https://github.com/andreshp/NapakalakiRb/blob/master/images/AngelesDeLaNocheIbicenca.png)
 
-## Examples
+- Continuous Integration with [travis-ci](https://travis-ci.org).
 
 ## Requirements
+
+- [Ruby 2.2.1](https://www.ruby-lang.org/en/news/2015/03/03/ruby-2-2-1-released/) version of Ruby.
+- [Rakefile](https://rubygems.org/gems/rake) to execute the program. 
+- [Yard](http://yardoc.org/) for the documentation.
+- [Bones](https://github.com/TwP/bones) to generate the directories.
 
 ## Install
 
 To generate the documentation execute:
 
 ~~~bash
-yard doc ./lib
+rake document
 ~~~
 
-## Programs Used
+To execute a test do:
 
-- [Yard](http://yardoc.org/) for the documentation.
-- [Bones](https://github.com/TwP/bones) to generate the directories.
+~~~bash
+rake test:run
+~~~
 
 ## Authors
 
