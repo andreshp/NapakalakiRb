@@ -1,3 +1,5 @@
+#encoding: utf­8
+
 ######################################################################
 # Authors: Andrés Herrera Poyatos, Juan Luis Suárez Díaz
 # Universidad of Granada, March, 2015
@@ -26,7 +28,7 @@ class Prize
     # Gets a string with the prize's info.
     # @return string with information.
     def toString
-        "Treasures = " + treasures.to_s + " , Levels = " + levels.to_s
+        "Treasures = #{@treasure}, Levels = #{@levels}"
     end
 
 end

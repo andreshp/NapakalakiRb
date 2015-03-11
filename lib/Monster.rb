@@ -1,3 +1,5 @@
+#encoding: utf­8
+
 ######################################################################
 # Authors: Andrés Herrera Poyatos, Juan Luis Suárez Díaz
 # Universidad of Granada, March, 2015
@@ -7,10 +9,10 @@
 # Monster Class.
 # This class has all the information related to the monsters
 # in Napakalaki game.
-# 
+#
 # @author andreshp, jlsuarez
 class Monster
-        
+
     # Gets name of the monster.
     attr_reader :name
 
@@ -33,6 +35,6 @@ class Monster
     # Gets a string with the monster's info.
     # @return string with information.
     def toString
-       "Name = " + name + "\nLevel = " + combatLevel.to_s + "\nPrize = [" + @prize.toString + "] \nBad Consequence = [\n" + @badCons.toString(10) + "\n]"
+        "Name = #{@name}\nLevel = #{@combatlevel}\nPrize = [" + @prize.toString + "] \nBad Consequence = [\n" + @badCons.toString(10) + "\n]"
     end
 end
