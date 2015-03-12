@@ -19,15 +19,15 @@ class Monster
 
     # Initialize method.
     # Initializes name, combatlevel, prize, badCons.
-    # @param name [string] Monster's name.
+    # @param name  [string] Monster's name.
     # @param level [int] Monster's level.
-    # @param bc [BadConsequence] Bad consequence of losing to the monster.
+    # @param bc    [BadConsequence] Bad consequence of losing to the monster.
     # @param prize [Prize] Prize for winning to the monster.
     def initialize(name, level, bc, prize)
         @name = name
         @combatLevel = level
-        @prize = prize
         @badCons = bc
+        @prize = prize
     end
 
     # Gets a string with the monster's info.
