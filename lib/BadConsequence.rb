@@ -23,7 +23,7 @@ class BadConsequence
     # @param tVisible [int] Array with the visible treasures. It sets specificVisibleTreasures attribute.
     # @param tHidden [int] Array with the hidden treasures. It sets specificHiddenTreasures attribute.
 
-    def initialize(text,levels,death,nVisible,nHidden,tVisible,tHidden)
+    def initialize(text,levels,nVisible,nHidden,tVisible,tHidden,death)
         @text = text
         @death = death
         @levels = levels
@@ -43,21 +43,21 @@ class BadConsequence
 
     # Constructor that initializes every attribute but the arrays and death.
 
-    def self.new_by_number(text, levels, nVisible, nHidden)
-        new(text,levels,false,nVisible,nHidden,nil,nil)
+    def self.newNumberOfTreasures(text, levels, nVisible, nHidden)
+        new(text,levels,nVisible,nHidden,nil,nil,false)
     end 
 
     # Constructor that initializes the attributes text and death.
 
-    def self.new_by_death(text,death)
-        new(text,0,death,0,0,nil,nil)
+    def self.newDeath(text)
+        new(text,0,0,0,nil,nil,true)
         
     end
 
     # Constructor that initializes the attributes text, levels and both treasures array.
 
-    def self.new_by_specific(text, levels, tVisible, tHidden)
-        new(text,levels, false, 0, 0, tVisible, tHidden)
+    def self.newSpecificTreasures(text, levels, tVisible, tHidden)
+        new(text,levels, 0, 0, tVisible, tHidden, false)
     end
     
     # Get Methods available for attributes text, levels, nVisibleTreasures, nHiddenTreasures and death.
