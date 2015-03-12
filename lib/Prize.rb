@@ -17,7 +17,7 @@ class Prize
     # Initializes treasures and levels.
     #
     # @param treasures [int] Amount of treasures bonus.
-    # @param levels [int] Amount of levels bonus.
+    # @param levels    [int] Amount of levels bonus.
     def initialize(treasures, levels)
         @treasures = treasures
         @levels = levels
