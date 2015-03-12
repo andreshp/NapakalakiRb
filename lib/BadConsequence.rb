@@ -15,14 +15,13 @@ class BadConsequence
 
     # Private constructor whichs initializes all attributes.
     #
-    # @param text [string] Text that explains what does the bas consequence do. It sets text attribute.
-    # @param levels [int] Levels that are lost with the bad consequence. It sets levels attribute.
-    # @param death [boolean] Value that indicates if the nad consequence is death. It sets death attribute.
+    # @param text     [string] Text that explains what does the bas consequence do. It sets text attribute.
+    # @param levels   [int] Levels that are lost with the bad consequence. It sets levels attribute.
+    # @param death    [boolean] Value that indicates if the nad consequence is death. It sets death attribute.
     # @param nVisible [int] Number of Visible Treasures that are lost. It sets nVisibleTreasures attribute.
-    # @param nHidden [int] Number of Hidden Treasures that are lost. It sets nHiddenTreasures attribute.
+    # @param nHidden  [int] Number of Hidden Treasures that are lost. It sets nHiddenTreasures attribute.
     # @param tVisible [int] Array with the visible treasures. It sets specificVisibleTreasures attribute.
-    # @param tHidden [int] Array with the hidden treasures. It sets specificHiddenTreasures attribute.
-
+    # @param tHidden  [int] Array with the hidden treasures. It sets specificHiddenTreasures attribute.
     def initialize(text,levels,nVisible,nHidden,tVisible,tHidden,death)
         @text = text
         @death = death
@@ -64,7 +63,7 @@ class BadConsequence
     attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death
 
 
-    #Disables public constructor new in order to guarantee a right initialization of a BadConsequence instance. 
+    # Disables public constructor new in order to guarantee a right initialization of a BadConsequence instance. 
     private_class_method :new
 
     # Returns a string with the Bad Consequence instance contents.
