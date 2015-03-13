@@ -26,7 +26,7 @@ class Prize
     # Gets a string with the prize's info.
     # @return string with information.
     def to_s
-        "Treasures = #{@treasure}, Levels = #{@levels}"
+        "Treasures = #{@treasures}, Levels = #{@levels}"
     end
 
 end

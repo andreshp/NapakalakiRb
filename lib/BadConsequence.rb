@@ -59,8 +59,8 @@ class BadConsequence
         new(text,levels, 0, 0, tVisible, tHidden, false)
     end
     
-    # Get Methods available for attributes text, levels, nVisibleTreasures, nHiddenTreasures and death.
-    attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death
+    # Get Methods available for attributes text, levels, nVisibleTreasures, nHiddenTreasures, death, specificVisibleTreasures and specificHiiddenTreasures
+    attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death, :specificVisibleTreasures, :specificHiddenTreasures
 
 
     # Disables public constructor new in order to guarantee a right initialization of a BadConsequence instance. 

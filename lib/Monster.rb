@@ -17,6 +17,12 @@ class Monster
     # Gets the combat level of the monster.
     attr_reader :combatLevel
 
+    # Gets Prize of the monster.
+    attr_reader :prize
+
+    #Gets Bad Consequences of the monster.
+    attr_reader :badCons
+
     # Initialize method.
     # Initializes name, combatlevel, prize, badCons.
     # @param name  [string] Monster's name.
@@ -33,6 +39,6 @@ class Monster
     # Gets a string with the monster's info.
     # @return string with information.
     def to_s
-        "Name = #{@name}\nLevel = #{@combatlevel}\nPrize = [" + @prize.toString + "] \nBad Consequence = [\n" + @badCons.toString(10) + "\n]"
+        "Name = #{@name}\nLevel = #{@combatLevel}\nPrize = [" + @prize.to_s + "] \nBad Consequence = [\n" + @badCons.to_s(10) + "\n]"
     end
 end
