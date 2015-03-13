@@ -69,7 +69,7 @@ class BadConsequence
     # Returns a string with the Bad Consequence instance contents.
     # @param spaces [int] Spaces in each line of the string.
     # @return String with the contents.
-    def toString(spaces = 0)
+    def to_s(spaces = 0)
         str_spaces = "\s"*spaces
         str_spaces + "Text = " + text.to_s + "\n" + str_spaces + "Levels = " + levels.to_s + "\n" + str_spaces + "nVisibleTreasures = " + 
         nVisibleTreasures.to_s + "\n" + str_spaces + "nHiddenTreasures = " + nHiddenTreasures.to_s + "\n" + str_spaces + "Death = " + death.to_s

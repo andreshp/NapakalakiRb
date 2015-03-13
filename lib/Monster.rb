@@ -32,7 +32,7 @@ class Monster
 
     # Gets a string with the monster's info.
     # @return string with information.
-    def toString
+    def to_s
         "Name = #{@name}\nLevel = #{@combatlevel}\nPrize = [" + @prize.toString + "] \nBad Consequence = [\n" + @badCons.toString(10) + "\n]"
     end
 end
