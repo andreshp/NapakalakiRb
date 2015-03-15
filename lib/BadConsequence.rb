@@ -34,10 +34,6 @@ class BadConsequence
         @specificHiddenTreasures = tHidden
     end
 
-    ##########
-    ########## new_* methods need to review default values
-    ##########
-
     # -------------------- Public constructors -------------------- #
 
     # Constructor that initializes every attribute but the arrays and death.
