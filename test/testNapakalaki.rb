@@ -200,37 +200,37 @@ monsters << Monster.new("Bicéfalo", 20, badConsequence, prize)
 
 #Operaciones sobre monstruos:
 
-puts "\nMonstruos con nivel superior a 10:\n"
+puts "\nMonstruos con nivel superior a 10:\n\n"
 (monsters).each do |i|
     if i.combatLevel > 10
-        puts i.to_s + "\n"
+        puts i.to_s + "\n\n"
     end
 end
 
-puts "\nMonstruos con mal rollo que afecta solo a niveles:\n"
+puts "\nMonstruos con mal rollo que afecta solo a niveles:\n\n"
 (monsters).each do |i|
     if i.badCons.levels > 0 && i.badCons.nVisibleTreasures == 0 && i.badCons.nHiddenTreasures == 0 &&
        i.badCons.specificHiddenTreasures == nil && i.badCons.specificVisibleTreasures == nil && i.badCons.death == false 
-        puts i.to_s + "\n"
+        puts i.to_s + "\n\n"
     end
 end
 
-puts "\nMonstruos con buen rollo con ganancia de nivel superior a 1:\n"
+puts "\nMonstruos con buen rollo con ganancia de nivel superior a 1:\n\n"
 (monsters).each do |i|
     if i.prize.levels > 1
-        puts i.to_s + "\n"
+        puts i.to_s + "\n\n"
     end
 end
 
-puts "\nMonstruos cuyo mal rollo implica la pérdida de una mano:\n"
+puts "\nMonstruos cuyo mal rollo implica la pérdida de una mano:\n\n"
 (monsters).each do |i|
     if i.badCons.specificVisibleTreasures != nil
         if i.badCons.specificVisibleTreasures.index(TreasureKind::ONEHAND) != nil
-            puts i.to_s + "\n"
+            puts i.to_s + "\n\n"
         end
     elsif i.badCons.specificHiddenTreasures != nil
         if i.badCons.specificHiddenTreasures.index(TreasureKind::ONEHAND) != nil 
-            puts i.to_s + "\n"
+            puts i.to_s + "\n\n"
         end
     end
 end

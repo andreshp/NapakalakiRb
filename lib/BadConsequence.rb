@@ -66,9 +66,30 @@ class BadConsequence
     # @param spaces [int] Spaces in each line of the string.
     # @return String with the contents.
     def to_s(spaces = 0)
+        specificVisibleStr = " "
+        specificHiddenStr = " "
+
+        if specificVisibleTreasures == nil || specificVisibleTreasures.empty?
+            specificVisibleStr += "Ninguno"
+        else
+            (specificVisibleTreasures).each do |i|
+                specificVisibleStr += "#{i} "
+            end
+        end
+
+        if specificHiddenTreasures == nil || specificHiddenTreasures.empty?
+            specificHiddenStr = "Ninguno"
+        else
+            (specificHiddenTreasures).each do |i|
+                specificHiddenStr += "#{i} "
+            end
+        end
+
         str_spaces = "\s"*spaces
         str_spaces + "Text = " + text.to_s + "\n" + str_spaces + "Levels = " + levels.to_s + "\n" + str_spaces + "nVisibleTreasures = " + 
-        nVisibleTreasures.to_s + "\n" + str_spaces + "nHiddenTreasures = " + nHiddenTreasures.to_s + "\n" + str_spaces + "Death = " + death.to_s
+        nVisibleTreasures.to_s + "\n" + str_spaces + "nHiddenTreasures = " + nHiddenTreasures.to_s + "\n" + str_spaces +
+        "specificVisibleTreasures = " + specificVisibleStr.upcase + "\n" + str_spaces + "specificHiddenTreasures = " + specificHiddenStr.upcase +
+         "\n" + str_spaces + "Death = " + death.to_s
     end
 end
 
