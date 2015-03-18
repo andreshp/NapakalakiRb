@@ -4,7 +4,8 @@ The game Napakalaki developped in Ruby for PDO at University of Granada.
 
 [![](https://magnum.travis-ci.com/andreshp/NapakalakiRb.svg?token=zdF49bNxJkGyJPsv9ain)](https://travis-ci.org/repositories)
 [![](https://img.shields.io/badge/language-Ruby-red.svg)](https://www.ruby-lang.org/)
-[![](https://img.shields.io/badge/license-GNU-blue.svg)](http://www.gnu.org/copyleft/gpl.html)
+[![](https://img.shields.io/badge/license-GNU-blue.svg)](http://www.gnu.org/
+copyleft/gpl.html)
 [![](https://img.shields.io/badge/university-Granada-orange.svg)](http://www.ugr.es/)
 
 ## Features
@@ -20,20 +21,25 @@ The game Napakalaki developped in Ruby for PDO at University of Granada.
 - [Ruby 2.2.1](https://www.ruby-lang.org/en/news/2015/03/03/ruby-2-2-1-released/) version of Ruby.
 - [Rakefile](https://rubygems.org/gems/rake) to execute the program. 
 - [Yard](http://yardoc.org/) for the documentation.
-- [Bones](https://github.com/TwP/bones) to generate the directories.
 
 ## Install
-
-To generate the documentation execute:
-
-~~~bash
-rake document
-~~~
 
 To execute a test do:
 
 ~~~bash
 rake test:run
+~~~
+
+Or simply do:
+
+~~~bash
+rake
+~~~
+
+To generate the documentation execute:
+
+~~~bash
+rake document
 ~~~
 
 ## Authors

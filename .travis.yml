@@ -4,7 +4,6 @@ rvm:
   - 2.2.1
 
 before_install:
-  - gem install bones
   - gem install yard
 
 script: rake OPEN=false document && rake test:run
