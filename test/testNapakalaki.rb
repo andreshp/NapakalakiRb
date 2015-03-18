@@ -6,8 +6,6 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-require_relative '../lib/BadConsequence.rb' # para poder acceder a lo definido en los ficheros.
-require_relative '../lib/Prize.rb'
 require_relative '../lib/Monster.rb'
 
 #--------------------- CREACIÓN DE LOS MONSTRUOS ---------------------#
@@ -171,14 +169,11 @@ end
 # Monstruos cuyo mal rollo implica la pérdida de una mano
 puts "\nMonstruos cuyo mal rollo implica la pérdida de una mano:\n\n"
 monsters.each do |i|
-    if i.badCons.specificVisibleTreasures != nil
-        if i.badCons.specificVisibleTreasures.index(TreasureKind::ONEHAND) != nil
-            puts i.to_s + "\n\n"
-        end
-    elsif i.badCons.specificHiddenTreasures != nil
-        if i.badCons.specificHiddenTreasures.index(TreasureKind::ONEHAND) != nil 
-            puts i.to_s + "\n\n"
-        end
+    if i.badCons.specificVisibleTreasures != nil and i.badCons.specificVisibleTreasures.include? TreasureKind::ONEHAND
+        puts i.to_s + "\n\n"
+    end
+    if i.badCons.specificHiddenTreasures != nil and i.badCons.specificHiddenTreasures.include? TreasureKind::ONEHAND 
+        puts i.to_s + "\n\n"
     end
 end
 

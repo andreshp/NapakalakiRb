@@ -37,20 +37,17 @@ class BadConsequence
     # -------------------- Public constructors -------------------- #
 
     # Constructor that initializes every attribute but the arrays and death.
-
     def self.newNumberOfTreasures(text, levels, nVisible, nHidden)
         new(text,levels,nVisible,nHidden,nil,nil,false)
     end 
 
     # Constructor that initializes the attributes text and death.
-
     def self.newDeath(text)
         new(text,0,0,0,nil,nil,true)
         
     end
 
     # Constructor that initializes the attributes text, levels and both treasures array.
-
     def self.newSpecificTreasures(text, levels, tVisible, tHidden)
         new(text,levels, 0, 0, tVisible, tHidden, false)
     end
@@ -66,26 +63,26 @@ class BadConsequence
     # @param spaces [int] Spaces in each line of the string.
     # @return String with the contents.
     def to_s(spaces = 0)
-        specificVisibleStr = " "
-        specificHiddenStr = " "
+        specificVisibleStr = ""; specificHiddenStr = ""; str_spaces = "\s"*spaces
 
+        # Get the specific visible treasures
         if specificVisibleTreasures == nil || specificVisibleTreasures.empty?
             specificVisibleStr += "Ninguno"
         else
-            (specificVisibleTreasures).each do |i|
+            specificVisibleTreasures.each do |i|
                 specificVisibleStr += "#{i} "
             end
         end
 
+        # Get the specific hidden treasures
         if specificHiddenTreasures == nil || specificHiddenTreasures.empty?
             specificHiddenStr = "Ninguno"
         else
-            (specificHiddenTreasures).each do |i|
+            specificHiddenTreasures.each do |i|
                 specificHiddenStr += "#{i} "
             end
         end
 
-        str_spaces = "\s"*spaces
         str_spaces + "Text = " + text.to_s + "\n" + str_spaces + "Levels = " + levels.to_s + "\n" + str_spaces + "nVisibleTreasures = " + 
         nVisibleTreasures.to_s + "\n" + str_spaces + "nHiddenTreasures = " + nHiddenTreasures.to_s + "\n" + str_spaces +
         "specificVisibleTreasures = " + specificVisibleStr.upcase + "\n" + str_spaces + "specificHiddenTreasures = " + specificHiddenStr.upcase +

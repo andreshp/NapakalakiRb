@@ -4,6 +4,9 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
+require_relative '../lib/BadConsequence.rb'
+require_relative '../lib/Prize.rb'
+
 # Monster Class.
 # This class has all the information related to the monsters
 # in Napakalaki game.
