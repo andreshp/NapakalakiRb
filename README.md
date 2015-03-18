@@ -4,15 +4,14 @@ The game Napakalaki developped in Ruby for PDO at University of Granada.
 
 [![](https://magnum.travis-ci.com/andreshp/NapakalakiRb.svg?token=zdF49bNxJkGyJPsv9ain)](https://travis-ci.org/repositories)
 [![](https://img.shields.io/badge/language-Ruby-red.svg)](https://www.ruby-lang.org/)
-[![](https://img.shields.io/badge/license-GNU-blue.svg)](http://www.gnu.org/
-copyleft/gpl.html)
+[![](https://img.shields.io/badge/license-GNU-blue.svg)](http://www.gnu.org)
 [![](https://img.shields.io/badge/university-Granada-orange.svg)](http://www.ugr.es/)
 
 ## Features
 
 - Really cool monsters!
 
-![Angeles](https://github.com/andreshp/NapakalakiRb/blob/master/images/AngelesDeLaNocheIbicenca.png)
+![Angeles](./images/AngelesDeLaNocheIbicenca.png)
 
 - Continuous Integration with [travis-ci](https://travis-ci.org).
 
