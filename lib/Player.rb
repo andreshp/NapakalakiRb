@@ -69,13 +69,6 @@ class Treasure
 
     # Discard the necklace if it is a visible treasure.
     def discardNecklaceIfVisible
-        @visibleTreasures.each do |treasure|
-            if treasure.type == NECKLACE
-                CardDealer.instance.giveTreasureBack treasure
-                @visibleTreasures.delete(treasure)
-                break
-            end
-        end  
     end
 
     # The player dies if he don't have treasures.
@@ -100,7 +93,6 @@ class Treasure
     # @param treasures [Array Treasures] Array with the treasures.
     # @return Total sum of gold coins
     def computeGoldCoins(treasures)
-        treasures.inject(0){|sum,x| sum += x.getGoldCoins} / 1000
     end
 
     #-------------- PUBLIC METHODS --------------#
@@ -110,11 +102,6 @@ class Treasure
     # Apply the prize won fighting with a monster.
     # @param [Prize] Prize to apply.
     def applyPrize(prize)
-        self.incrementLevels(prize.getLevels)
-
-        [p.getTreasures,4-@hiddenTreasures.size].min.times do
-                @hiddenTreasures << CardDealer.instance.nextTreasure
-        end
     end
 
     # Combat against a given monster.
@@ -151,7 +138,7 @@ class Treasure
     # @param visible [Treasure []] Visible treasures to sell. 
     # @param hidden [Treasure []] Hidden treasures to sell. 
     # @return Bolean    
-    def buyLevels(visible : Treasure [], hidden : Treasure [])
+    def buyLevels(visible, hidden)
     end
 
     # Get the combat level of the player.
