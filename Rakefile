@@ -14,6 +14,15 @@ namespace :test do
     end
 end
 
+# Examen
+namespace :examen do
+    desc "Ejecutar el examen"
+    task :run do
+        sh "ruby ./lib/examen.rb"
+    end
+end
+
+
 # Build the documentation
 desc "Build the documentation. Option: OPEN=false (not open a broswer)"
 task :document do |t|

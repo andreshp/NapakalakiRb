@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 ######################################################################
 # Authors: Andrés Herrera Poyatos, Juan Luis Suárez Díaz
 # Universidad of Granada, March, 2015
