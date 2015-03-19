@@ -15,7 +15,7 @@ require_relative 'TreasureKind.rb'
 # @author andreshp, jlsuarez
 class BadConsequence
 
-    # Private constructor whichs initializes all attributes.
+    # Initializes all the attributes.
     #
     # @param text     [string] Text that explains what does the bas consequence do. It sets text attribute.
     # @param levels   [int] Levels that are lost with the bad consequence. It sets levels attribute.
@@ -57,9 +57,19 @@ class BadConsequence
     # Get Methods available for attributes text, levels, nVisibleTreasures, nHiddenTreasures, death, specificVisibleTreasures and specificHiiddenTreasures
     attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death, :specificVisibleTreasures, :specificHiddenTreasures
 
-
     # Disables public constructor new in order to guarantee a right initialization of a BadConsequence instance. 
     private_class_method :new
+
+    # Check if the Bad Consequence is empty.
+    def isEmpty
+        test == "" and death == false and nVisibleTreasures == 0 and nHiddenTreasures == 0
+            and specificVisibleTreasures == nil and specificHiddenTreasures == nil
+    end
+
+    # Check if the player dies as the bad consequence.
+    def kills
+        @death
+    end
 
     # Returns a string with the Bad Consequence instance contents.
     # @param spaces [int] Spaces in each line of the string.
