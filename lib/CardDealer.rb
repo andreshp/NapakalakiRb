@@ -84,8 +84,7 @@ class CardDealer
         @unusedTreasures << Treasure.new("Garabato místico",300,2,2,TreasureKind::ONEHAND)
 
         # Treasure: La fuerza de Mr. T
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        @unusedTreasures << Treasure.new("La fuerza de Mr. T",100,-1,-1,TreasureKind::NECKLACE)
+        @unusedTreasures << Treasure.new("La fuerza de Mr. T",1000,0,0,TreasureKind::NECKLACE)
 
         # Treasure: La rebeca metálica
         @unusedTreasures << Treasure.new("La rebeca metálica",400,2,3,TreasureKind::ARMOR)
@@ -273,7 +272,7 @@ class CardDealer
         @unusedMonsters.shuffle!
     end
 
-    # 
+    # Gets the instance 
     def self.getInstance
         @@instance
     end
