@@ -17,11 +17,8 @@ class Napakalaki
 
     include Singleton
 
-    def initialize
-        @@instance = nil
-    end
-
     def initPlayers(names)
+        
     end
 
     def nextPlayer
