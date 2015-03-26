@@ -11,8 +11,8 @@ require_relative '../lib/Treasure.rb'
 require_relative '../lib/Monster.rb'
 
 # CardDealer Class.
-# This class manages everything related to decks of cards
-# in Napakalaki game.
+# This class manages everything related to decks of cards in Napakalaki game.
+# It is a singleton class, no more than one instance is allowed.
 #
 # @author andreshp, jlsuarez
 class CardDealer

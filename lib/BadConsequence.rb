@@ -54,16 +54,18 @@ class BadConsequence
         new(text,levels, 0, 0, tVisible, tHidden, false)
     end
     
-    # Get Methods available for attributes text, levels, nVisibleTreasures, nHiddenTreasures, death, specificVisibleTreasures and specificHiiddenTreasures
-    attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death, :specificVisibleTreasures, :specificHiddenTreasures
+    # Get Methods available for attributes text, levels, nVisibleTreasures, nHiddenTreasures, 
+    # death, specificVisibleTreasures and specificHiiddenTreasures
+    attr_reader :text, :levels, :nVisibleTreasures, :nHiddenTreasures, :death
+    attr_reader :specificVisibleTreasures, :specificHiddenTreasures
 
     # Disables public constructor new in order to guarantee a right initialization of a BadConsequence instance. 
     private_class_method :new
 
     # Check if the Bad Consequence is empty.
     def isEmpty
-        test == "" and death == false and nVisibleTreasures == 0 and nHiddenTreasures == 0
-            and specificVisibleTreasures == nil and specificHiddenTreasures == nil
+        test == "" and death == false and nVisibleTreasures == 0 and nHiddenTreasures == 0 and 
+            specificVisibleTreasures == nil and specificHiddenTreasures == nil
     end
 
     # Check if the player dies as the bad consequence.
