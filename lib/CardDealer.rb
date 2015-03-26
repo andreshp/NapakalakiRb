@@ -26,7 +26,7 @@ class CardDealer
 
     # Private method which initializes the treasures' deck of cards.
     def initTreasureCardDeck
-        #--------------------- CREACCIÖN DE LOS TESOROS ----------------------#
+        #--------------------- CREACIÓN DE LOS TESOROS ----------------------#
 
         # Definición de la baraja de tesoros (no usados):
 
