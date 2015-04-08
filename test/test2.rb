@@ -62,9 +62,8 @@ for i in 1..19
     cards.giveMonsterBack(monster)
 end
 
-
 # Tesoros cuyo bonus no mejora aunque lleves el collar:
-puts "Tesoros cuyo bonus no mejora aunque lleves el collar:\n\n"
+puts "\nTesoros cuyo bonus no mejora aunque lleves el collar:\n\n"
 for i in 1..32
     treasure = cards.nextTreasure
     if treasure.minBonus == treasure.maxBonus
@@ -74,7 +73,7 @@ for i in 1..32
 end
 
 # Tesoros que proporcionan 100 o menos monedas:
-puts "Tesoros que proporcionan 100 o menos monedas:\n\n"
+puts "\nTesoros que proporcionan 100 o menos monedas:\n\n"
 for i in 1..32
     treasure = cards.nextTreasure
     if treasure.goldCoins <= 100
@@ -84,7 +83,7 @@ for i in 1..32
 end
 
 # Tesoros que puedes llevar en las manos:
-puts "Tesoros que puedes llevar en las manos:\n\n"
+puts "\nTesoros que puedes llevar en las manos:\n\n"
 for i in 1..32
     treasure = cards.nextTreasure
     if treasure.kind == Model::TreasureKind::ONEHAND || treasure.kind == Model::TreasureKind::BOTHHANDS
@@ -94,7 +93,7 @@ for i in 1..32
 end
 
 # Tesoros que empiezan por 'Necro':
-puts "Tesoros que empiezan por 'Necro':\n\n"
+puts "\nTesoros que empiezan por 'Necro':\n\n"
 for i in 1..32
     treasure = cards.nextTreasure
     if treasure.name.start_with?("Necro")
@@ -105,7 +104,7 @@ end
 
 # -- TESTING THE DICE -- #
 dice = Model::Dice.instance
-puts "Testing the dice: "
+puts "\nTesting the dice: "
 
 for i in 1..28
     print "#{dice.nextNumber} "
