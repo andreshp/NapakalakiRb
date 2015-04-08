@@ -39,7 +39,7 @@ module Model
         # Gets a string with the treasure's info.
         # @return string with information.
         def to_s
-            "Name = #{@name}\nGold Coins = #{@goldCoin}\nMinimum Bonus = #{@minBonus}\nMaximum Bonus = #{@maxBonus}\nKind of the Treasure = #{@kind}" + "\n"
+            "Name = #{@name}\nGold Coins = #{@goldCoins}\nMinimum Bonus = #{@minBonus}\nMaximum Bonus = #{@maxBonus}\nKind of the Treasure = #{@kind.upcase}" + "\n"
         end
     end
 end
