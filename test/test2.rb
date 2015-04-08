@@ -24,7 +24,7 @@ for i in 1..19
         if monster.combatLevel > 10
             puts monster.to_s + "\n\n"
         end
-    cards.giveMonsterBack
+    cards.giveMonsterBack(monster)
 end
 
 # Monstruos con mal rollo que afecta solo a niveles
@@ -35,7 +35,7 @@ for i in 1..19
        monster.badCons.specificHiddenTreasures == nil && monster.badCons.specificVisibleTreasures == nil && monster.badCons.death == false 
         puts monster.to_s + "\n\n"
     end
-    cards.giveMonsterBack
+    cards.giveMonsterBack(monster)
 end
 
 # Monstruos con buen rollo con ganancia de nivel superior a 1
@@ -45,19 +45,19 @@ for i in 1..19
     if monster.prize.levels > 1
         puts monster.to_s + "\n\n"
     end
-    cards.giveMonsterBack
+    cards.giveMonsterBack(monster)
 end
 
 # Monstruos cuyo mal rollo implica la pérdida de una mano
 puts "\nMonstruos cuyo mal rollo implica la pérdida de una mano:\n\n"
 for i in 1..19
     monster = cards.nextMonster
-    if monster.badCons.specificVisibleTreasures != nil and monster.badCons.specificVisibleTreasures.include? TreasureKind::ONEHAND
+    if monster.badCons.specificVisibleTreasures != nil and monster.badCons.specificVisibleTreasures.include? Model::TreasureKind::ONEHAND
         puts monster.to_s + "\n\n"
     end
-    if monster.badCons.specificHiddenTreasures != nil and monster.badCons.specificHiddenTreasures.include? TreasureKind::ONEHAND 
+    if monster.badCons.specificHiddenTreasures != nil and monster.badCons.specificHiddenTreasures.include? Model::TreasureKind::ONEHAND 
         puts monster.to_s + "\n\n"
     end
-    cards.giveMonsterBack
+    cards.giveMonsterBack(monster)
 end
 
