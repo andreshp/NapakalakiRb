@@ -291,23 +291,23 @@ module Model
         # Takes a treasure from the top of the deck
         # @return Treasure taken.
         def nextTreasure
-            @unusedTreasures.pop
             if @unusedTreasures.empty?
                 @unusedTreasures = @usedTreasures
                 @usedTreasures = []
                 @unusedTreasures.shuffle!
             end
+            @unusedTreasures.pop
         end
     
         # Takes a monster from the top of the deck
         # @return Monster taken.
         def nextMonster
-            @unusedMonsters.pop
             if @unusedMonsters.empty?
                 @unusedMonsters = @usedMonsters
                 @usedMonsters = []
                 @unusedMonsters.shuffle!
             end
+            @unusedMonsters.pop
         end
     
         # Returns a treasure to the used treasures' deck
