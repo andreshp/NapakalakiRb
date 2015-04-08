@@ -1,15 +1,9 @@
+#encoding: utf-8
+
 #######################################################################
 # Authors: Andrés Herrera Poyatos, Juan Luis Suárez Díaz
 # Universidad of Granada, March, 2015
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-language: ruby
-
-rvm:
-  - 2.2.1
-
-before_install:
-  - gem install yard
-
-script: rake OPEN=false document && rake test:run1 && rake test:run2
+# Examen de PDOO
