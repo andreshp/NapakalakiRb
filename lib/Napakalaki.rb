@@ -25,12 +25,14 @@ module Model
             
         end    
         def nextPlayer
-            @currentPlayer#Index
+            
         end
     
         public
         def initialize
-            
+            @currentPlayer = nil
+            @currentMonster = nil
+            @players = nil
         end
 
         def combat
