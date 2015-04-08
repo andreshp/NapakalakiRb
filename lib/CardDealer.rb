@@ -21,19 +21,23 @@ module Model
     class CardDealer
     
         include Singleton
-    
-        # Private constructor
+        
+        # Initialize method.
+        # 
+        # Initializes every attribute to a list.
+        #  - unusedTreasures : 
         def initialize
-            @@instance = nil
+            @unusedTreasures = []
+            @unusedMonsters  = []
+            @usedTreasures   = []
+            @usedMonsters    = []
         end
     
+        private
         # Private method which initializes the treasures' deck of cards.
         def initTreasureCardDeck
-            #--------------------- CREACIÓN DE LOS TESOROS ----------------------#
-    
-            # Definición de la baraja de tesoros (no usados):
-    
-            @unusedTreasures = []
+
+            #--------------------- Se añaden los monstruos  ----------------------#
     
             # Treasure: ¡Sí mi amo!
             @unusedTreasures << Treasure.new("¡Sí mi amo!",0,4,7,TreasureKind::HELMET)
@@ -134,11 +138,9 @@ module Model
     
         # Private method which initializes the monsters' deck of cards.
         def initMonsterCardDeck
+    
             #--------------------- CREACIÓN DE LOS MONSTRUOS ---------------------#
-    
-            # Definición de la baraja de monstruos (no usados):
-            @unusedMonsters = []
-    
+        
             # Monster: 3 Byakhees de de bonanza
             badConsequence = BadConsequence.newSpecificTreasures(
                 "Pierdes tu armadura visible y tu armadura oculta.", 0,
@@ -274,12 +276,8 @@ module Model
         def shuffleMonsters
             @unusedMonsters.shuffle!
         end
-    
-        # Gets the instance 
-        def self.getInstance
-            @@instance
-        end
-    
+        
+        public
         # Takes a treasure from the top of the deck
         # @return Treasure taken.
         def nextTreasure
@@ -322,6 +320,5 @@ module Model
             shuffleMonsters
         end
     
-        private_class_method :new :initTreasureCardDeck :initMonsterCardDeck :shuffleTreasures :shuffle@unusedMonsters
     end
 end
