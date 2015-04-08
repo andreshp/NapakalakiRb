@@ -25,7 +25,10 @@ module Model
         # Initialize method.
         # 
         # Initializes every attribute to a list.
-        #  - unusedTreasures : 
+        #  - unusedTreasures : Deck with the unused treasures
+        #  - usedTreasures : Deck with the used treasures
+        #  - unusedMonsters : Deck with the unused monsters
+        #  - usedMonsters : Deck with the used monsters
         def initialize
             @unusedTreasures = []
             @unusedMonsters  = []
@@ -277,7 +280,9 @@ module Model
             @unusedMonsters.shuffle!
         end
         
+        #-------------------- PUBLIC METHODS --------------------#
         public
+
         # Takes a treasure from the top of the deck
         # @return Treasure taken.
         def nextTreasure
@@ -318,7 +323,6 @@ module Model
             initTreasureCardDeck
             shuffleTreasures
             shuffleMonsters
-        end
-    
+        end 
     end
 end

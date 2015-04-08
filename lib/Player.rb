@@ -69,6 +69,9 @@ module Model
     
         # The player dies
         def die
+            @dead = true
+            @level = 1
+            #.....
         end
     
         # Discard the necklace if it is a visible treasure.
