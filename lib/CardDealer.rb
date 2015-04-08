@@ -7,6 +7,8 @@
 #######################################################################
 
 require "singleton"
+
+require_relative '../lib/TreasureKind.rb'
 require_relative '../lib/Treasure.rb'
 require_relative '../lib/Monster.rb'
 
@@ -70,7 +72,7 @@ module Model
             @unusedTreasures << Treasure.new("Clavo de rail ferroviario",400,3,6,TreasureKind::ONEHAND)
     
             # Treasure: Cuchillo de Sushi arcano
-            @unusedTreasures << Treasure.new("Cuchillo de Sushi arcano",300,2,3,TreasureKind::OHENAND)
+            @unusedTreasures << Treasure.new("Cuchillo de Sushi arcano",300,2,3,TreasureKind::ONEHAND)
     
             # Treasure: Fez alópodo
             @unusedTreasures << Treasure.new("Fez alópodo",700,3,5,TreasureKind::HELMET)
