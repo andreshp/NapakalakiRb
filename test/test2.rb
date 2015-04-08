@@ -9,6 +9,7 @@
 #######################################################################
 
 require_relative '../lib/CardDealer.rb'
+require_relative '../lib/Dice.rb' #Just for the dice.
 
 #--------------------- INITIALIZE THE CARDS DECK ---------------------#
 
@@ -101,3 +102,12 @@ for i in 1..32
     end
     cards.giveTreasureBack(treasure)
 end
+
+# -- TESTING THE DICE -- #
+dice = Model::Dice.instance
+puts "Testing the dice: "
+
+for i in 1..28
+    print "#{dice.nextNumber} "
+end
+puts "\n"
