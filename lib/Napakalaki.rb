@@ -11,6 +11,7 @@ require "singleton"
 # Module Model.
 # Napakalaki game's model.
 module Model
+
     # Napakalaki class
     # Main class of Napakalaki game.
     #
@@ -19,18 +20,19 @@ module Model
     
         include Singleton
     
+        private
         def initPlayers(names)
             
-        end
-    
+        end    
         def nextPlayer
             @currentPlayer#Index
         end
     
-        def self.getInstance
-            @@instance
+        public
+        def initialize
+            
         end
-    
+
         def combat
     
         end
@@ -86,7 +88,5 @@ module Model
         def endOfGame(result)
     
         end
-    
-        private_class_method :new :initPlayers :nextPlayer
     end
 end
