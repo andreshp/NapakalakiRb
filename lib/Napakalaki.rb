@@ -25,7 +25,6 @@ module Model
             
         end    
         def nextPlayer
-
         end
     
         public
