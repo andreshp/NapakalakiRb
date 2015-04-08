@@ -27,13 +27,13 @@ module Model
         def nextPlayer
         end
     
-        public
         def initialize
             @currentPlayer = nil
             @currentMonster = nil
             @players = []
         end
 
+        public
         def combat
     
         end
