@@ -4,13 +4,16 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-task :default => 'test:run'
+task :default => 'test:run2'
 
 # Test programs
 namespace :test do
     desc "Pass a test"
-    task :run do
-        sh "ruby ./test/testNapakalaki.rb"
+    task :run1 do
+        sh "ruby ./test/test1.rb"
+    end
+    task :run2 do
+        sh "ruby ./test/test2.rb"
     end
 end
 

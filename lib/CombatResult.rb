@@ -15,9 +15,9 @@ module Model
     # @author andreshp, jlsuarez
     module CombatResult
         WINANDWINGAME = :winandwingame
-        WIN = :win
-        LOSE = :lose
+        WIN =           :win
+        LOSE =          :lose
         LOSEANDESCAPE = :loseandescape
-        LOSEANDDIE = :loseanddie
+        LOSEANDDIE =    :loseanddie
     end
 end
