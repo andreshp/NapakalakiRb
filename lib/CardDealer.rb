@@ -8,7 +8,6 @@
 
 require "singleton"
 
-require_relative '../lib/TreasureKind.rb'
 require_relative '../lib/Treasure.rb'
 require_relative '../lib/Monster.rb'
 
@@ -42,8 +41,10 @@ module Model
         # Private method which initializes the treasures' deck of cards.
         def initTreasureCardDeck
 
-            #--------------------- Se añaden los monstruos  ----------------------#
-    
+            #-------------------#
+            # Add the treasures #
+            #-------------------#
+                
             # Treasure: ¡Sí mi amo!
             @unusedTreasures << Treasure.new("¡Sí mi amo!",0,4,7,TreasureKind::HELMET)
     
@@ -144,7 +145,9 @@ module Model
         # Private method which initializes the monsters' deck of cards.
         def initMonsterCardDeck
     
-            #--------------------- CREACIÓN DE LOS MONSTRUOS ---------------------#
+            #-------------------#
+            # Add the Monsters  #
+            #-------------------#
         
             # Monster: 3 Byakhees de de bonanza
             badConsequence = BadConsequence.newSpecificTreasures(
