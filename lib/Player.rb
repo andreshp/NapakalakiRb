@@ -21,7 +21,7 @@ module Model
     # in Napakalaki game.
     #
     # @author andreshp, jlsuarez
-    class Treasure
+    class Player
     
         # Getters name of the player, if he is dead and his level.
         attr_reader :dead, :name, :level
@@ -61,12 +61,14 @@ module Model
             @level = @level - levels >= 1? @level-levels : 1 
         end
     
+        public
+
         # Set a bad consequence as pending.
         # @param badCons [BadConsequence] Bad Consequence to assign as pending.
         def setPendingBadConsequence(badCons)
                 @pendingBadConsequence = badCons
         end
-    
+        private
         # The player dies
         def die
             @dead = true
@@ -160,10 +162,10 @@ module Model
     
         # Check if the player is in a valid state.
         # This means, there isn't a pending bad consequence and the number of 
-        # hidden treasures is no more than 4.
+        # hidden treasures is no more than MAXHIDDENTREASURES.
         # @return Bolean with the result of the check.
         def validState
-            pendingBadConsequence == nil and hiddenTreasures.size <= 4
+            (@pendingBadConsequence == nil or @pendingBadConsequence.isEmpty) and @hiddenTreasures.size <= @@MAXHIDDENTREASURES
         end
         
         # @return Bolean    
@@ -181,5 +183,13 @@ module Model
         def hasVisibleTreasures
             not visibleTreasures.empty?
         end
+
+#        def setVisibleTreasureList(treasures)
+#            @visibleTreasures = treasures
+#        end
+#        def setHiddenTreasureList(treasures)
+#            @hiddenTreasures = treasures
+#        end
+
     end
 end

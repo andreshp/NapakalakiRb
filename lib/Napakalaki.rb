@@ -21,9 +21,12 @@ module Model
         include Singleton
     
         private
+
+        # Initializes the players
         def initPlayers(names)
-            
-        end    
+           @players = names
+        end
+
         def nextPlayer
         end
     

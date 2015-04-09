@@ -67,7 +67,7 @@ module Model
     
         # Check if the Bad Consequence is empty.
         def isEmpty
-            (text == "" or text == nil) and death == false and nVisibleTreasures == 0 and nHiddenTreasures == 0 and 
+            death == false and nVisibleTreasures == 0 and nHiddenTreasures == 0 and 
                 specificVisibleTreasures == nil and specificHiddenTreasures == nil
         end
     
