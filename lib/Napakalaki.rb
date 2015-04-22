@@ -42,8 +42,9 @@ module Model
     # If it isn't, the player is the one to currentPlayer's right in the
     # array players.
     def nextPlayer
-      if @currentPlayer = nil
-        @currentPlayer = Random.rand(1..3)
+      if @currentPlayer == nil
+        @currentPlayerIndex = Random.rand(@players.size)
+        @currentPlayer = @players[@currentPlayerIndex]
       else
         @currentPlayerIndex = (@currentPlayerIndex+1) % @players.size
         @currentPlayer = players[@currentPlayerIndex]
@@ -61,30 +62,64 @@ module Model
     end
 
     #----------------- PUBLIC METHODS -----------------#
+
     public
 
+    # Indicates to the current player that the combat with current monster
+    # must be performed. For that purpose, calls the combat method
+    # for that player.
+    # @return A CombatResult enum with the result of the combat.
     def combat
-
+      @currentPlayer.combat
     end
 
+    # Deletes the visible treasures indicated from the player's visible treasures list.
+    # If the player has a pending bad consequence, it is actualized.
+    # @param t [Treasure] List with the visible treasures to delete.
     def discardVisibleTreasure(t)
-    
+      @currentPlayer.discardVisibleTreasure(t)
     end
     
+    # Deletes the hidden treasures indicated from the player's hidden treasures list.
+    # If the player has a pending bad consequence, it is actualized.
+    # @param t [Treasure] List with the hidden treasures to delete.
     def discardHiddenTreasure(t)
-    
+      @currentPlayer.discardHiddenTreasure(t)
     end
-    
+
+    # Makes a given hidden treasure visible for the current player.
+    # Checks if the treasure can be made visible and if so do it.
+    # @param t [Treasure] Treasure to make visible.
+    # @return True if the treasure has been made visible. False otherwise.
     def makeTreasureVisible(t)
-    
+      allowed = canMakeTreasureVisible(t)
+      if allowed
+        @currentPlayer.makeTreasureVisible(t)
+      end
+      allowed
     end
     
+    # Given a list of visible and hidden treasures, check how many levels can buy the
+    # current player with those treasures and, if he does not win the game, do the
+    # operation. To accomplish this action the method calls to currentPlater.buyLevels. 
+    # @param visible [Treasure []] Visible treasures to exchange for levels.
+    # @param hidden [Treasure []] Hidden treasures to exchange for levels.
+    # @return Boolean which indicates if the levels has been bought.
     def buyLevels(visible, hidden)
-    
+      @currentPlayer.buyLevels(visible,hidden)
     end
-    
+
+    # Requests to CardDealer initializing the cards' decks. 
+    # Initializes the players and starts the game calling nextTurn method.
+    # @param players [String []] Players names
     def initGame(players)
-    
+      # Initializes the cards and the players
+      CardDealer.instance.initCards
+      initPlayers(players)
+      # Initializes currentPlayer and calls next turn
+      @currentPlayerIndex = Random.rand(players.size)
+      @currentPlayer = @players[@currentPlayerIndex]
+      nextTurn
     end
         
     def canMakeTreasureVisible(t)
@@ -99,8 +134,20 @@ module Model
     
     end
     
+    # Verifies if the current player has already finished his turn. 
+    # In that case a new currentPlayer is asigned and a new monster is
+    # taken from the monsters deck.
+    # If the new curent player is dead or it is his first turn then
+    # his treasures are initialized.
+    # @return True if it was possible to begin a new turn. False otherwise.
     def nextTurn
-    
+      isNextTurnAllowed = nextTurnAllowed
+      if isNextTurnAllowed
+        @currentPlayer = nextPlayer
+        @currentPlayer.initTreasures if @currentPlayer.isDead
+        @currentMonster = CardDealer.instance.nextMonster
+      end
+      isNextTurnAllowed
     end
     
     # Check if the current player can pass the turn.
