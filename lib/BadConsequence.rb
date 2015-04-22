@@ -75,6 +75,38 @@ module Model
         def kills
             @death
         end
+
+        # Private method which substract treasures from the given (visible/hidden)
+        # treasure list.
+        private
+        def substractTreasure(tr_list,t)
+            i = tr_list.index(t.kind)
+
+            if i != nil
+                tr_list.delete_at(i)
+            end
+        end
+
+        #Method that updates bad consequence according to a visible treasure discarding.
+        public
+        def substractVisibleTreasure(t)
+            if @specificVisibleTreasures != nil
+                substractTreasure(@specificVisibleTreasures,t)
+            else
+                @nVisibleTreasures -= 1
+            end
+        end
+
+        #Method that updates bad consequence according to a hidden treasure discarding.
+        def substractHidddenTreasure(t)
+            if @specificHiddenTreasures != nil
+                substractTreasure(@specificHiddenTreasures,t)
+            else
+                @nVisibleTreasures -= 1
+            end
+        end
+
+
     
         # Returns a string with the Bad Consequence instance contents.
         # @param spaces [int] Spaces in each line of the string.
