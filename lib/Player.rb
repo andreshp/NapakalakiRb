@@ -78,6 +78,13 @@ module Model
     
         # Discard the necklace if it is a visible treasure.
         def discardNecklaceIfVisible
+            @visibleTreasures.each do |vt|
+                if vt.getType == TreasureKind::NECKLACE
+                    CardDealer.instance.giveTreasureBavk(vt)
+                    @visibleTreasures.delete(vt)
+                    break
+                end
+            end
         end
     
         # The player dies if he don't have treasures.
@@ -98,10 +105,11 @@ module Model
     
         protected
     
-        # Method that compute the total sum of gold coins of the given treasures.
+        # Method that compute the total amount of levels the player can buy with the given treasures.
         # @param treasures [Array Treasures] Array with the treasures.
-        # @return Total sum of gold coins
-        def computeGoldCoins(treasures)
+        # @return Amount of levels able to buy (not rounded)
+        def computeGoldCoinsValue(treasures)
+            treasure.inject(0){|sum,x| sum += x.goldCoins} / 1000
         end
     
         #-------------- PUBLIC METHODS --------------#
@@ -133,6 +141,14 @@ module Model
         # @param [Treasure] Treasure to check.
         # @return Bolean
         def canMakeTreasureVisible(treasure)
+            tr_types = @visibleTreasures.map(&:getType)
+
+            @hiddenTreasures.member?(t) && 
+                (t.kind == TreasureKind::ONEHAND)? !tr_types.include?
+                    (TreasureKind::BOTHHANDS && tr_types.count(TreasureKind::ONEHAND) < 2):
+                (t.getType == TreasureKind::BOTHHANDS)?
+                    (!tr_types.include)?(TreasureKind::ONEHAND) && !tr_types.include(TreasureKind::BOTHHANDS):
+                    !vt.include?(t.getType):false
         end
         
         # Discard the tresure given if it is visible.
