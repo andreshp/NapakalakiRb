@@ -122,8 +122,12 @@ module Model
       nextTurn
     end
         
+    # Checks if a given hidden treasure can be made visible f
+    # or the current player.
+    # @param t [Treasure] Treasure to check.
+    # @return True if the treasure can be made visible. False otherwise.
     def canMakeTreasureVisible(t)
-    
+      @currentPlayer.canMakeTreasureVisible(t)
     end
     
     def getVisibleTreasures
