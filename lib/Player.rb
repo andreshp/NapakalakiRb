@@ -51,13 +51,13 @@ module Model
     
     # Increase the level of the player
     # @param levels [int] Levels to increase.
-    def increaseLevel(levels)
+    def increaseLevels(levels)
       @level += levels
     end
     
     # Decrease the level of the player
     # @param levels [int] Levels to decrease.
-    def decreaseLevel(levels)
+    def decreaseLevels(levels)
       @level = @level - levels >= 1? @level-levels : 1 
     end
     
@@ -73,9 +73,9 @@ module Model
     def die
       @dead = true
       @level = 1
-      @visibleTreasures.each {|t| cardDealer.instance.giveTreasureBack(t)}
+      @visibleTreasures.each {|t| CardDealer.instance.giveTreasureBack(t)}
       @visibleTreasures.clear
-      @hiddenTreasures.each {|t| cardDealer.instance.giveTreasureBack(t)}
+      @hiddenTreasures.each {|t| CardDealer.instance.giveTreasureBack(t)}
       @hiddenTreasures.clear
     end
     
@@ -123,7 +123,7 @@ module Model
     # @param [Prize] Prize to apply.
     def applyPrize(prize)
       # Increments the levels
-      incrementLevels(prize.levels)
+      increaseLevels(prize.levels)
       # Adds the treasures
       numberTreasures = [prize.treasures, 4-@hiddenTreasures.size].min
       numberTreasures.times {@hiddenTreasures << CardDealer.instance.nextTreasure}
@@ -136,19 +136,19 @@ module Model
       # the player wins.
       # Otherwise a dice is rolled. If the dice return 5 or 6
       # the player can scape. Else the player loses the combat.
-      if @level > monster.CombatLevel
+      if getCombatLevel > monster.combatLevel
         applyPrize(monster.prize)
-        combatResult = @level < 10? WIN : WINANDWINGAME
+        combatResult = @level < 10? CombatResult::WIN : CombatResult::WINANDWINGAME
       else
-        randomNumber = Dice.nextNumber
+        randomNumber = Dice.instance.nextNumber
         if randomNumber >= 5
-          return CombatResult.LOSEANDESCAPE
+          return CombatResult::LOSEANDESCAPE
         elsif monster.badCons.kills
           die
-          combatResult = LOSTANDDIE
+          combatResult = CombatResult::LOSEANDDIE
         else
           applyBadConsequence(monster.badCons)
-          combatResult = LOSE
+          combatResult = CombatResult::LOSE
         end
       end
       combatResult
@@ -158,7 +158,7 @@ module Model
     # @param badCons [BadConsequence] Bad Consequence to apply.
     def applyBadConsequence(badCons)
       # Decrement the correesponding levels
-      decrementLevels(bad.getLevels)
+      decreaseLevels(badCons.levels)
       # Set the pending bad consequence
       pendingBadCons = badCons.adjustToFitTreasureLists(@visibleTreasures, @hiddenTreasures)
       setPendingBadConsequence(pendingBadCons)
@@ -166,8 +166,9 @@ module Model
 
     # Make a given treasure visible.
     # @param [Treasure] Treasure to make visible.
-    # @return Bolean    
     def makeTreasureVisible(treasure)
+      @visibleTreasures << treasure
+      @hiddenTreasures.delete(treasure)
     end
 
     # Check if the given treasure can be made visible.
@@ -179,16 +180,16 @@ module Model
     # @return Boolean with the checking result.
     def canMakeTreasureVisible(treasure)
       tr_types = @visibleTreasures.map(&:getType)
-
       if @hiddenTreasures.member?(t) 
         if tr_types.include?(t.getType)
-          if t.getType == TreasureKind::ONEHAND and tr_types.count(TreasureKind::ONEHAND) < 2
-            return true
-          else return false
-        elsif t.getType == TreasureKind::BOTHHANDS and tr_types.include?(TreasureKind::ONEHAND)
-          return false
-        else return true
+          result = t.getType == TreasureKind::ONEHAND and 
+            tr_types.count(TreasureKind::ONEHAND) < 2? true : false
+        else
+          result = t.getType == TreasureKind::BOTHHANDS and 
+            tr_types.include?(TreasureKind::ONEHAND)? false : true
+        end
       end
+      result
     end
         
     # Discard the tresure given if it is visible.
@@ -209,7 +210,7 @@ module Model
     # Get the combat level of the player.
     # @return Integer with the combat level
     def getCombatLevel
-      if @visibleTreasures.include? NECKLACE
+      if @visibleTreasures.include? TreasureKind::NECKLACE
         return @visibleTreasures.inject(@level){ |sum,x| sum += x.maxBonus }
       else
         return @visibleTreasures.inject(@level){ |sum,x| sum += x.minBonus }
@@ -231,7 +232,7 @@ module Model
     #  - 3 if the rolled dice returns 6
     def initTreasures
       bringToLife
-      randomNumber = Dice.nextNumber
+      randomNumber = Dice.instance.nextNumber
       numberTreasures = randomNumber == 1? 1 : randomNumber < 6? 2 : 3
       numberTreasures.times {@hiddenTreasures << CardDealer.instance.nextTreasure}
     end
@@ -255,5 +256,13 @@ module Model
 #            @hiddenTreasures = treasures
 #        end
 
+    #----------------- GET METHODS FOR GAMETESTER -----------------#
+
+    def getHiddenTreasures
+      @hiddenTreasures
     end
+    def getVisibleTreasures
+      @visibleTreasures
+    end
+  end
 end

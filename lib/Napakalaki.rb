@@ -8,6 +8,9 @@
 
 require "singleton"
 
+require_relative "../lib/CardDealer.rb"
+require_relative "../lib/Player.rb"
+
 # Module Model.
 # Napakalaki game's model.
 module Model
@@ -47,7 +50,7 @@ module Model
         @currentPlayer = @players[@currentPlayerIndex]
       else
         @currentPlayerIndex = (@currentPlayerIndex+1) % @players.size
-        @currentPlayer = players[@currentPlayerIndex]
+        @currentPlayer = @players[@currentPlayerIndex]
       end
       @currentPlayer
     end
@@ -70,7 +73,7 @@ module Model
     # for that player.
     # @return A CombatResult enum with the result of the combat.
     def combat
-      @currentPlayer.combat
+      @currentPlayer.combat(@currentMonster)
     end
 
     # Deletes the visible treasures indicated from the player's visible treasures list.
@@ -166,6 +169,15 @@ module Model
     # @return Boolean checking if the game has finished.
     def endOfGame(result)
         result == CombatResult::WINANDWINGAME
+    end
+
+    #----------------- GET METHODS FOR GAMETESTER -----------------#
+
+    def getCurrentPlayer
+      @currentPlayer
+    end
+    def getCurrentMonster
+      @currentMonster
     end
   end
 end

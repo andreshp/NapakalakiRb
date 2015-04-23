@@ -66,12 +66,12 @@ module Model
 
     # Constructor that initializes the attributes text and death.
     def self.newDeath(text)
-        new(text,0,0,0,nil,nil,true)
+      new(text,0,0,0,nil,nil,true)
     end
 
     # Constructor that initializes the attributes text, levels and both treasures array.
     def self.newSpecificTreasures(text, levels, tVisible, tHidden)
-        new(text,levels, 0, 0, tVisible, tHidden, false)
+      new(text,levels, 0, 0, tVisible, tHidden, false)
     end
 
     # Get Methods available for attributes text, levels, nVisibleTreasures, 
@@ -86,8 +86,8 @@ module Model
       # If the badCons does not have specific treasures
       # takes nVisibleTreasures and nHiddenTreasures tresures.
       if @nVisibleTreasures > 0 or @nHiddenTreasures > 0
-        pendingVSize = [@nVisibleTreasures, v.size].min -1
-        pendingHSize = [@nHiddenTreasures, h.size].min -1
+        pendingVSize = [@nVisibleTreasures, v.size].min() -1
+        pendingHSize = [@nHiddenTreasures, h.size].min() -1
         pendingV = v[0 .. pendingVSize] if pendingVSize >= 0
         pendingH = h[0 .. pendingHSize] if pendingHSize >= 0
 
@@ -109,6 +109,7 @@ module Model
           i += 1 while v[i].kind < t
           pendingH << t if v[i].kind == t; i += 1
         end
+      end
     end
 
     # Check if the Bad Consequence is empty.
@@ -152,31 +153,31 @@ module Model
       specificVisibleStr = ""; specificHiddenStr = ""; str_spaces = "\s"*spaces
 
       # Get the specific visible treasures
-      if specificVisibleTreasures == nil || specificVisibleTreasures.empty?
+      if @specificVisibleTreasures == nil || @specificVisibleTreasures.empty?
         specificVisibleStr += "Ninguno"
       else
-        specificVisibleTreasures.each do |i|
+        @specificVisibleTreasures.each do |i|
           specificVisibleStr += "#{i} "
         end
       end
 
       # Get the specific hidden treasures
-      if specificHiddenTreasures == nil || specificHiddenTreasures.empty?
+      if @specificHiddenTreasures == nil || @specificHiddenTreasures.empty?
         specificHiddenStr = "Ninguno"
       else
-        specificHiddenTreasures.each do |i|
+        @specificHiddenTreasures.each do |i|
           specificHiddenStr += "#{i} "
         end
       end
 
       # Return the string
-      str_spaces + "Text = " + text.to_s + "\n" + 
-      str_spaces + "Levels = " + levels.to_s + "\n" + 
-      str_spaces + "nVisibleTreasures = " + nVisibleTreasures.to_s + "\n" + 
-      str_spaces + "nHiddenTreasures = " + nHiddenTreasures.to_s + "\n" + 
+      str_spaces + "Text = " + @text.to_s + "\n" + 
+      str_spaces + "Levels = " + @levels.to_s + "\n" + 
+      str_spaces + "nVisibleTreasures = " + @nVisibleTreasures.to_s + "\n" + 
+      str_spaces + "nHiddenTreasures = " + @nHiddenTreasures.to_s + "\n" + 
       str_spaces + "specificVisibleTreasures = " + specificVisibleStr.upcase + "\n" + 
       str_spaces + "specificHiddenTreasures = " + specificHiddenStr.upcase + "\n" + 
-      str_spaces + "Death = " + death.to_s
+      str_spaces + "Death = " + @death.to_s
     end
   end
 end
