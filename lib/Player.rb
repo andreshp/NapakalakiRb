@@ -126,7 +126,7 @@ module Model
       incrementLevels(prize.levels)
       # Adds the treasures
       numberTreasures = [prize.treasures, 4-@hiddenTreasures.size].min
-      numberTreasures.times{@hiddenTreasures << CardDealer.instance.nextTreasure}
+      numberTreasures.times {@hiddenTreasures << CardDealer.instance.nextTreasure}
     end
 
     # Combat against a given monster.

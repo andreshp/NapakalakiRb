@@ -9,15 +9,15 @@
 # Module Model.
 # Napakalaki game's model.
 module Model
-    # Combat Result enumerate.
-    # It has symbols for each possible situation after a combat in Napakalaki game.
-    #
-    # @author andreshp, jlsuarez
-    module CombatResult
-        WINANDWINGAME = :winandwingame
-        WIN =           :win
-        LOSE =          :lose
-        LOSEANDESCAPE = :loseandescape
-        LOSEANDDIE =    :loseanddie
-    end
+  # Combat Result enumerate.
+  # It has symbols for each possible situation after a combat in Napakalaki game.
+  #
+  # @author andreshp, jlsuarez
+  module CombatResult
+    WINANDWINGAME = :winandwingame
+    WIN =           :win
+    LOSE =          :lose
+    LOSEANDESCAPE = :loseandescape
+    LOSEANDDIE =    :loseanddie
+  end
 end
