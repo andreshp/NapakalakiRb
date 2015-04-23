@@ -155,7 +155,7 @@ end
 puts "\nMonstruos con mal rollo que afecta solo a niveles:\n\n"
 monsters.each do |i|
     if i.badCons.levels > 0 && i.badCons.nVisibleTreasures == 0 && i.badCons.nHiddenTreasures == 0 &&
-       i.badCons.specificHiddenTreasures == nil && i.badCons.specificVisibleTreasures == nil && i.badCons.death == false 
+       i.badCons.specificHiddenTreasures == nil && i.badCons.specificVisibleTreasures == nil && i.badCons.kills == false 
         puts i.to_s + "\n\n"
     end
 end

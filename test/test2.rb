@@ -33,7 +33,7 @@ puts "\nMonstruos con mal rollo que afecta solo a niveles:\n\n"
 for i in 1..19
     monster = cards.nextMonster
     if monster.badCons.levels > 0 && monster.badCons.nVisibleTreasures == 0 && monster.badCons.nHiddenTreasures == 0 &&
-       monster.badCons.specificHiddenTreasures == nil && monster.badCons.specificVisibleTreasures == nil && monster.badCons.death == false 
+       monster.badCons.specificHiddenTreasures == nil && monster.badCons.specificVisibleTreasures == nil && monster.badCons.kills == false 
         puts monster.to_s + "\n\n"
     end
     cards.giveMonsterBack(monster)
