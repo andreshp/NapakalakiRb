@@ -23,8 +23,8 @@ module Model
   # @author andreshp, jlsuarez
   class Player
 
-    # Getters name of the player, if he is dead and his level.
-    attr_reader :dead, :name, :level
+    # Getters name of the player, if he is dead, his level and his visible and hidden treasures.
+    attr_reader :dead, :name, :level, :visibleTreasures, :hiddenTreasures
 
     @@MAXHIDDENTREASURES = 4
 
@@ -82,7 +82,7 @@ module Model
     # Discard the necklace if it is a visible treasure.
     def discardNecklaceIfVisible
       @visibleTreasures.each do |vt|
-        if vt.getType == TreasureKind::NECKLACE
+        if vt.kind == TreasureKind::NECKLACE
           CardDealer.instance.giveTreasureBack(vt)
           @visibleTreasures.delete(vt)
           break
@@ -92,8 +92,8 @@ module Model
     
     # The player dies if he don't have treasures.
     def dieIfNoTreasures
-      if visibleTreasures.empty? and hiddenTreasures.empty?
-        self.die
+      if @visibleTreasures.empty? and @hiddenTreasures.empty?
+        die
       end
     end
     
@@ -112,7 +112,8 @@ module Model
     # @param treasures [Array Treasures] Array with the treasures.
     # @return Amount of levels able to buy (not rounded)
     def computeGoldCoinsValue(treasures)
-      treasure.inject(0){|sum,x| sum += x.goldCoins} / 1000
+      result = treasures.inject(0){|sum,t| sum += t.goldCoins} / 1000.0
+      result
     end
     
     #-------------- PUBLIC METHODS --------------#
@@ -151,6 +152,9 @@ module Model
           combatResult = CombatResult::LOSE
         end
       end
+      # Discard the necklace if it is a visible treasure
+      discardNecklaceIfVisible
+      # Return the combat result
       combatResult
     end
 
@@ -167,8 +171,12 @@ module Model
     # Make a given treasure visible.
     # @param [Treasure] Treasure to make visible.
     def makeTreasureVisible(treasure)
-      @visibleTreasures << treasure
-      @hiddenTreasures.delete(treasure)
+      allowed = canMakeTreasureVisible(treasure)
+      if allowed
+        @visibleTreasures << treasure
+        @hiddenTreasures.delete(treasure)
+      end
+      allowed
     end
 
     # Check if the given treasure can be made visible.
@@ -179,38 +187,74 @@ module Model
     # @param [Treasure] Treasure to check.
     # @return Boolean with the checking result.
     def canMakeTreasureVisible(treasure)
-      tr_types = @visibleTreasures.map(&:getType)
-      if @hiddenTreasures.member?(t) 
-        if tr_types.include?(t.getType)
-          result = t.getType == TreasureKind::ONEHAND and 
-            tr_types.count(TreasureKind::ONEHAND) < 2? true : false
+      tr_types = @visibleTreasures.map(&:kind)
+      if @hiddenTreasures.member?(treasure)
+        if tr_types.include?(treasure.kind)
+          if treasure.kind == TreasureKind::ONEHAND and tr_types.count(TreasureKind::ONEHAND) < 2
+            result = true
+          else
+            result = false
+          end
+        elsif treasure.kind == TreasureKind::BOTHHANDS and tr_types.include?(TreasureKind::ONEHAND) 
+          result = false
+        elsif treasure.kind == TreasureKind::ONEHAND and tr_types.include?(TreasureKind::BOTHHANDS) 
+          result = false
         else
-          result = t.getType == TreasureKind::BOTHHANDS and 
-            tr_types.include?(TreasureKind::ONEHAND)? false : true
+          result = true
         end
+      else
+        result = false
       end
       result
     end
         
     # Discard the tresure given if it is visible.
     def discardVisibleTreasure(treasure)
+      @visibleTreasures.delete(treasure)
+      if @pendingBadConsequence != nil and not @pendingBadConsequence.isEmpty()
+        @pendingBadConsequence.substractVisibleTreasure(treasure)
+      end
+      CardDealer.instance.giveTreasureBack(treasure)
+      dieIfNoTreasures
     end
 
     # Discard the given treasure if it is hidden.
     def discardHiddenTreasure(treasure)
+      @hiddenTreasures.delete(treasure)
+      if @pendingBadConsequence != nil and not @pendingBadConsequence.isEmpty()
+        @pendingBadConsequence.substractHiddenTreasure(treasure)
+      end
+      CardDealer.instance.giveTreasureBack(treasure)
+      dieIfNoTreasures
     end
 
-    # Buy levels
+    # Buy levels for the player.
+    # Before finishing the shopping it is checked that the player
+    # can buy levels.
     # @param visible [Treasure []] Visible treasures to sell. 
     # @param hidden [Treasure []] Hidden treasures to sell. 
-    # @return Bolean    
+    # @return Boolean which indicates if it was possible to buy levels.
     def buyLevels(visible, hidden)
+      levels = computeGoldCoinsValue(visible)
+      levels += computeGoldCoinsValue(hidden)
+      canBuy = canIBuyLevels(levels)
+      if canBuy
+        increaseLevels(levels.to_i)
+        for t in visible
+          discardVisibleTreasure(t)
+        end
+        for t in hidden
+          discardHiddenTreasure(t)
+        end
+      end
+      canBuy
     end
 
     # Get the combat level of the player.
     # @return Integer with the combat level
     def getCombatLevel
-      if @visibleTreasures.include? TreasureKind::NECKLACE
+      tr_types = @visibleTreasures.map(&:kind)
+      if tr_types.include? TreasureKind::NECKLACE
         return @visibleTreasures.inject(@level){ |sum,x| sum += x.maxBonus }
       else
         return @visibleTreasures.inject(@level){ |sum,x| sum += x.minBonus }
@@ -248,13 +292,12 @@ module Model
     def hasVisibleTreasures
       not visibleTreasures.empty?
     end
-
-#        def setVisibleTreasureList(treasures)
-#            @visibleTreasures = treasures
-#        end
-#        def setHiddenTreasureList(treasures)
-#            @hiddenTreasures = treasures
-#        end
+    
+    # To string method for a player.
+    # It prints the player's name, level and combat level.
+    def to_s
+      @name + " Level: " + @level.to_s + " Combat Level: " + getCombatLevel.to_s
+    end
 
     #----------------- GET METHODS FOR GAMETESTER -----------------#
 
@@ -264,5 +307,15 @@ module Model
     def getVisibleTreasures
       @visibleTreasures
     end
+    def getName
+      @name
+    end
+
+#        def setVisibleTreasureList(treasures)
+#            @visibleTreasures = treasures
+#        end
+#        def setHiddenTreasureList(treasures)
+#            @hiddenTreasures = treasures
+#        end
   end
 end

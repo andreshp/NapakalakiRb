@@ -30,8 +30,7 @@ module Model
     # (visible/hidden) treasure list.
     # @param tr_list 
     def substractTreasure(tr_list, t)
-      i = tr_list.index(t.kind)
-      tr_list.delete_at(i) if i != nil
+      tr_list.delete(t)
     end
 
     # -------------------- PUBLIC METHODS -------------------- #
@@ -90,7 +89,6 @@ module Model
         pendingHSize = [@nHiddenTreasures, h.size].min() -1
         pendingV = v[0 .. pendingVSize] if pendingVSize >= 0
         pendingH = h[0 .. pendingHSize] if pendingHSize >= 0
-
       # If the badCons has specific treasures
       # takes the specific ones.
       else
@@ -101,22 +99,36 @@ module Model
         # Check which treasures put in the pending bad consequence
         i = 0
         for t in @specificVisibleTreasures
-          i += 1 while v[i].kind < t
-          pendingV << t if v[i].kind == t; i += 1
+          while i < v.size and v[i].kind < t
+            i += 1
+          end
+          if i < v.size
+            pendingV << t if v[i].kind == t; i += 1
+          else
+            break
+          end
         end
         i = 0
         for t in @specificHiddenTreasures
-          i += 1 while v[i].kind < t
-          pendingH << t if v[i].kind == t; i += 1
+          while i < h.size and h[i].kind < t
+            i += 1
+          end
+          if i < h.size
+            pendingH << t if h[i].kind == t; i += 1
+          else
+            break
+          end
         end
       end
+      BadConsequence.newSpecificTreasures(0,0,pendingV,pendingH)
     end
 
     # Check if the Bad Consequence is empty.
     # @return Checking result.
     def isEmpty
-      death == false and nVisibleTreasures == 0 and nHiddenTreasures == 0 and 
-        specificVisibleTreasures == nil and specificHiddenTreasures == nil
+      @death == false and @nVisibleTreasures == 0 and @nHiddenTreasures == 0 and 
+        (@specificVisibleTreasures == nil or @specificVisibleTreasures.empty?) and 
+        (@specificHiddenTreasures == nil  or @specificHiddenTreasures.empty?)
     end
 
     # Check if the player dies as the bad consequence.

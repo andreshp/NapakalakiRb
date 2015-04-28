@@ -95,16 +95,12 @@ module Model
     # @param t [Treasure] Treasure to make visible.
     # @return True if the treasure has been made visible. False otherwise.
     def makeTreasureVisible(t)
-      allowed = canMakeTreasureVisible(t)
-      if allowed
-        @currentPlayer.makeTreasureVisible(t)
-      end
-      allowed
+      @currentPlayer.makeTreasureVisible(t)
     end
     
     # Given a list of visible and hidden treasures, check how many levels can buy the
     # current player with those treasures and, if he does not win the game, do the
-    # operation. To accomplish this action the method calls to currentPlater.buyLevels. 
+    # operation. To accomplish this action the method calls to currentPlayer.buyLevels. 
     # @param visible [Treasure []] Visible treasures to exchange for levels.
     # @param hidden [Treasure []] Hidden treasures to exchange for levels.
     # @return Boolean which indicates if the levels has been bought.
@@ -132,13 +128,17 @@ module Model
     def canMakeTreasureVisible(t)
       @currentPlayer.canMakeTreasureVisible(t)
     end
-    
+
+    # Gets the current player visible treasures
+    # @return Array with the visible treasures
     def getVisibleTreasures
-    
+      @currentPlayer.visibleTreasures
     end
     
+    # Gets the current player hidden treasures
+    # @return Array with the hidden treasures
     def getHiddenTreasures
-    
+      @currentPlayer.hiddenTreasures    
     end
     
     # Verifies if the current player has already finished his turn. 
