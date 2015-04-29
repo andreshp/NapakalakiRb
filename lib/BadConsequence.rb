@@ -147,7 +147,7 @@ module Model
       if @specificVisibleTreasures != nil
         substractTreasure(@specificVisibleTreasures,t)
       else
-        @nVisibleTreasures = [0, @nVisibleTreasures].max
+        @nVisibleTreasures = [0, @nVisibleTreasures-1].max
       end
     end
 
@@ -157,7 +157,7 @@ module Model
       if @specificHiddenTreasures != nil
         substractTreasure(@specificHiddenTreasures,t)
       else
-        @nHiddenTreasures = [0, @nHiddenTreasures].max
+        @nHiddenTreasures = [0, @nHiddenTreasures-1].max
       end
     end
     
