@@ -30,7 +30,7 @@ module Model
     # (visible/hidden) treasure list.
     # @param tr_list 
     def substractTreasure(tr_list, t)
-      tr_list.delete(t)
+      tr_list.delete(t.kind)
     end
 
     # -------------------- PUBLIC METHODS -------------------- #
@@ -81,17 +81,16 @@ module Model
     # @param v [Treasure []]
     # @return BadConsequence: pendingBad
     def adjustToFitTreasureLists(v, h)
-      pendingV = []; pendingH = []
       # If the badCons does not have specific treasures
       # takes nVisibleTreasures and nHiddenTreasures tresures.
       if @nVisibleTreasures > 0 or @nHiddenTreasures > 0
-        pendingVSize = [@nVisibleTreasures, v.size].min() -1
-        pendingHSize = [@nHiddenTreasures, h.size].min() -1
-        pendingV = v[0 .. pendingVSize] if pendingVSize >= 0
-        pendingH = h[0 .. pendingHSize] if pendingHSize >= 0
+        nVisible = [@nVisibleTreasures, v.size].min
+        nHidden = [@nHiddenTreasures, h.size].min
+        badCons = BadConsequence.newNumberOfTreasures(0,0,nVisible,nHidden)
       # If the badCons has specific treasures
       # takes the specific ones.
       else
+        pendingV = []; pendingH = []
         # Sort every array
         v.sort! { |a,b| a.kind <=> b.kind }
         h.sort! { |a,b| a.kind <=> b.kind }
@@ -119,8 +118,9 @@ module Model
             break
           end
         end
+        badCons = BadConsequence.newSpecificTreasures(0,0,pendingV,pendingH)
       end
-      BadConsequence.newSpecificTreasures(0,0,pendingV,pendingH)
+      badCons
     end
 
     # Check if the Bad Consequence is empty.
