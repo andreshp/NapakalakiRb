@@ -270,7 +270,7 @@ module Model
       # Monster: Bicéfalo
       badConsequence = BadConsequence.newSpecificTreasures(
         "Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.",3,
-        [TreasureKind::ONEHAND, TreasureKind::BOTHHANDS],[])
+        [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::BOTHHANDS],[])
       prize = Prize.new(1,1)
       @unusedMonsters << Monster.new("Bicéfalo", 20, badConsequence, prize)
     end

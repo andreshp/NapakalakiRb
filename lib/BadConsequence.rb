@@ -83,10 +83,10 @@ module Model
     def adjustToFitTreasureLists(v, h)
       # If the badCons does not have specific treasures
       # takes nVisibleTreasures and nHiddenTreasures tresures.
-      if @nVisibleTreasures > 0 or @nHiddenTreasures > 0
+      if @specificVisibleTreasures == nil and @specificHiddenTreasures == nil
         nVisible = [@nVisibleTreasures, v.size].min
         nHidden = [@nHiddenTreasures, h.size].min
-        badCons = BadConsequence.newNumberOfTreasures(0,0,nVisible,nHidden)
+        badCons = BadConsequence.newNumberOfTreasures("Falta por cumplir:",0,nVisible,nHidden)
       # If the badCons has specific treasures
       # takes the specific ones.
       else
@@ -118,7 +118,7 @@ module Model
             break
           end
         end
-        badCons = BadConsequence.newSpecificTreasures(0,0,pendingV,pendingH)
+        badCons = BadConsequence.newSpecificTreasures("Falta por cumplir:",0,pendingV,pendingH)
       end
       badCons
     end
