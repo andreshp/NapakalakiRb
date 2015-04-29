@@ -142,7 +142,7 @@ module Model
       else
         randomNumber = Dice.instance.nextNumber
         if randomNumber >= 5
-          return CombatResult::LOSEANDESCAPE
+          combatResult = CombatResult::LOSEANDESCAPE
         elsif monster.badCons.kills
           die
           combatResult = CombatResult::LOSEANDDIE

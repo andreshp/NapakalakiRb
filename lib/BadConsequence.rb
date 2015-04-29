@@ -30,7 +30,8 @@ module Model
     # (visible/hidden) treasure list.
     # @param tr_list 
     def substractTreasure(tr_list, t)
-      tr_list.delete(t.kind)
+      place = tr_list.index(t.kind)
+      tr_list.delete_at(place) if place != nil
     end
 
     # -------------------- PUBLIC METHODS -------------------- #
@@ -91,34 +92,81 @@ module Model
       # takes the specific ones.
       else
         pendingV = []; pendingH = []
-
         # Sort every array
-        v.sort! { |a,b| a.kind <=> b.kind }
-        h.sort! { |a,b| a.kind <=> b.kind }
-        @specificVisibleTreasures.sort!; @specificHiddenTreasures.sort!
-
+        v = v.map(&:kind)
+        h = h.map(&:kind)
+        v.sort!
+        h.sort!
+        @specificVisibleTreasures.sort!
+        @specificHiddenTreasures.sort!
+        #puts "Visible treasures"
+        #puts v
+        #puts "Hidden treasures"
+        #puts h
+        #puts "Visible treasures"
+        #puts @specificVisibleTreasures
+        #puts "Hidden treasures"
+        #puts @specificHiddenTreasures
         # Check which treasures put in the pending bad consequence
         i = 0
         for t in @specificVisibleTreasures
-          while i < v.size and v[i].kind < t
+          #puts "\nIteracion"
+          #puts v[i], t if i < v.size
+          #puts "nil", t if i >= v.size
+          #puts "Visible treasures"
+          #puts v
+          #puts "Hidden treasures"
+          #puts h
+          #puts "Visible treasures"
+          #puts @specificVisibleTreasures
+          #puts "Hidden treasures"
+          #puts @specificHiddenTreasures
+          #puts "IS " + v[i].to_s + " " + t.to_s
+          #puts v[i] < t
+          while i < v.size and v[i] < t
+            i += 1
+            if i < v.size
+              #puts "IS " + v[i].to_s + " " + t.to_s
+              #puts v[i] < t
+            end
+          end
+          
+          if v[i] == t
+            pendingV << t
             i += 1
           end
-          if i < v.size
-            pendingV << t if v[i].kind == t
-            i += 1
-          else
+          if i >= v.size
             break
           end
         end
         i = 0
         for t in @specificHiddenTreasures
-          while i < h.size and h[i].kind < t
+          #puts "\nIteracion"
+          #puts h[i], t if i < h.size
+          #puts "nil", t if i >= h.size
+          #puts "Visible treasures"
+          #puts h
+          #puts "Hidden treasures"
+          #puts h
+          #puts "Visible treasures"
+          #puts @specificVisibleTreasures
+          #puts "Hidden treasures"
+          #puts @specificHiddenTreasures
+          #puts "IS " + h[i].to_s + " " + t.to_s
+          #puts h[i] < t
+          while i < h.size and h[i] < t
+            i += 1
+            if i < h.size
+              #puts "IS " + h[i].to_s + " " + t.to_s
+              #puts h[i] < t
+            end
+          end
+          
+          if h[i] == t
+            pendingH << t
             i += 1
           end
-          if i < h.size
-            pendingH << t if h[i].kind == t
-            i += 1
-          else
+          if i >= h.size
             break
           end
         end
