@@ -91,10 +91,12 @@ module Model
       # takes the specific ones.
       else
         pendingV = []; pendingH = []
+
         # Sort every array
         v.sort! { |a,b| a.kind <=> b.kind }
         h.sort! { |a,b| a.kind <=> b.kind }
         @specificVisibleTreasures.sort!; @specificHiddenTreasures.sort!
+
         # Check which treasures put in the pending bad consequence
         i = 0
         for t in @specificVisibleTreasures
@@ -102,7 +104,8 @@ module Model
             i += 1
           end
           if i < v.size
-            pendingV << t if v[i].kind == t; i += 1
+            pendingV << t if v[i].kind == t
+            i += 1
           else
             break
           end
@@ -113,7 +116,8 @@ module Model
             i += 1
           end
           if i < h.size
-            pendingH << t if h[i].kind == t; i += 1
+            pendingH << t if h[i].kind == t
+            i += 1
           else
             break
           end
@@ -143,7 +147,7 @@ module Model
       if @specificVisibleTreasures != nil
         substractTreasure(@specificVisibleTreasures,t)
       else
-        @nVisibleTreasures -= 1
+        @nVisibleTreasures = [0, @nVisibleTreasures].max
       end
     end
 
@@ -153,7 +157,7 @@ module Model
       if @specificHiddenTreasures != nil
         substractTreasure(@specificHiddenTreasures,t)
       else
-        @nVisibleTreasures -= 1
+        @nHiddenTreasures = [0, @nHiddenTreasures].max
       end
     end
     

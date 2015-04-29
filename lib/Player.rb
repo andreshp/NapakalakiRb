@@ -297,7 +297,7 @@ module Model
     def to_s
       @name + " Level: " + @level.to_s + " Combat Level: " + getCombatLevel.to_s +
       "\nMal rollo pendiente: " + 
-      ((@pendingBadConsequence==nil||@pendingBadConsequence.isEmpty)?("OK"):@pendingBadConsequence.to_s)
+      ((@pendingBadConsequence==nil||@pendingBadConsequence.isEmpty)?("OK"):("\n"+@pendingBadConsequence.to_s))
     end
 
     #----------------- GET METHODS FOR GAMETESTER -----------------#
