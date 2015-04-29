@@ -149,7 +149,7 @@ module Model
 
     # Method that updates the bad consequence substracting a hidden treasure.
     # @param t [Treasure] Treasure to substract.
-    def substractHidddenTreasure(t)
+    def substractHiddenTreasure(t)
       if @specificHiddenTreasures != nil
         substractTreasure(@specificHiddenTreasures,t)
       else
