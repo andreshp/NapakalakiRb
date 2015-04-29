@@ -99,38 +99,13 @@ module Model
         h.sort!
         @specificVisibleTreasures.sort!
         @specificHiddenTreasures.sort!
-        #puts "Visible treasures"
-        #puts v
-        #puts "Hidden treasures"
-        #puts h
-        #puts "Visible treasures"
-        #puts @specificVisibleTreasures
-        #puts "Hidden treasures"
-        #puts @specificHiddenTreasures
+
         # Check which treasures put in the pending bad consequence
         i = 0
         for t in @specificVisibleTreasures
-          #puts "\nIteracion"
-          #puts v[i], t if i < v.size
-          #puts "nil", t if i >= v.size
-          #puts "Visible treasures"
-          #puts v
-          #puts "Hidden treasures"
-          #puts h
-          #puts "Visible treasures"
-          #puts @specificVisibleTreasures
-          #puts "Hidden treasures"
-          #puts @specificHiddenTreasures
-          #puts "IS " + v[i].to_s + " " + t.to_s
-          #puts v[i] < t
           while i < v.size and v[i] < t
             i += 1
-            if i < v.size
-              #puts "IS " + v[i].to_s + " " + t.to_s
-              #puts v[i] < t
-            end
-          end
-          
+          end          
           if v[i] == t
             pendingV << t
             i += 1
@@ -139,27 +114,11 @@ module Model
             break
           end
         end
+
         i = 0
         for t in @specificHiddenTreasures
-          #puts "\nIteracion"
-          #puts h[i], t if i < h.size
-          #puts "nil", t if i >= h.size
-          #puts "Visible treasures"
-          #puts h
-          #puts "Hidden treasures"
-          #puts h
-          #puts "Visible treasures"
-          #puts @specificVisibleTreasures
-          #puts "Hidden treasures"
-          #puts @specificHiddenTreasures
-          #puts "IS " + h[i].to_s + " " + t.to_s
-          #puts h[i] < t
           while i < h.size and h[i] < t
             i += 1
-            if i < h.size
-              #puts "IS " + h[i].to_s + " " + t.to_s
-              #puts h[i] < t
-            end
           end
           
           if h[i] == t
