@@ -74,6 +74,7 @@ module Model
     # @return A CombatResult enum with the result of the combat.
     def combat
       @currentPlayer.combat(@currentMonster)
+      CardDealer.instance.giveMonsterBack(currentMonster)
     end
 
     # Deletes the visible treasures indicated from the player's visible treasures list.
