@@ -295,7 +295,9 @@ module Model
     # To string method for a player.
     # It prints the player's name, level and combat level.
     def to_s
-      @name + " Level: " + @level.to_s + " Combat Level: " + getCombatLevel.to_s
+      @name + " Level: " + @level.to_s + " Combat Level: " + getCombatLevel.to_s +
+      "\nMal rollo pendiente: " + 
+      ((@pendingBadConsequence==nil||@pendingBadConsequence.isEmpty)?("OK"):@pendingBadConsequence.to_s)
     end
 
     #----------------- GET METHODS FOR GAMETESTER -----------------#
