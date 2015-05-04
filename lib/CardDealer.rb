@@ -10,6 +10,7 @@ require "singleton"
 
 require_relative '../lib/Treasure.rb'
 require_relative '../lib/Monster.rb'
+require_relative '../lib/Cultist.rb'
 
 # Module Model.
 # Napakalaki game's model.
@@ -35,6 +36,7 @@ module Model
       @unusedMonsters  = []
       @usedTreasures   = []
       @usedMonsters    = []
+      @unusedCultist   = []
     end
 
     private
@@ -273,6 +275,54 @@ module Model
         [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::BOTHHANDS],[])
       prize = Prize.new(1,1)
       @unusedMonsters << Monster.new("Bicéfalo", 20, badConsequence, prize)
+
+      # Monster (with cultists): El mal indecible impronunciable
+      badConsequence = BadConsequence.newSpecificTreasures("Pierdes 1 mano visible.",0,
+        [TreasureKind::ONEHAND],[])
+      prize = Prize.new(3,1)
+      @unusedMonsters << Monster.new("El mal indecible impronunciable",10,badConsequence,prize,-2)
+
+      # Monster (with cultists): Testigos oculares
+      badConsequence = BadConsequence.newNumberOfTreasures("Pierdes tus tesoros visibles. Jajaja.",0,100,0)
+      prize = Prize.new(2,1)
+      @unusedMonsters << Monster.new("Testigos oculares",6,badConsequence,prize,6)
+
+      # Monster (with cultists): El gran Cthulhu
+      badConsequence = BadConsequence.newDeath("Hoy no es tu día de suerte. Mueres.")
+      prize = Prize.new(2,5)
+      @unusedMonsters << Monster.new("El gran Cthulhu",20,badConsequence,prize,4)
+
+      # Monster (with cultists): Serpiente Político
+      badConsequence = BadConsequence.newNumberOfTreasures("Tu gobierno te recorta 2 niveles.",2,0,0)
+      prize = Prize.new(2,1)
+      @unusedMonsters << Monster.new("Serpiente Político",8,badConsequence,prize,-2)
+
+      # Monster (with cultists): Felpuggoth
+      badConsequence = BadConsequence.newSpecificTreasures("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.",0,
+        [TreasureKind::HELMET,TreasureKind::ARMOR],[TreasureKind::BOTHHANDS])
+      prize = Prize.new(1,1)
+      @unusedMonsters << Monster.new("Felpuggoth",2,badConsequence,prize,5)
+
+      # Monster (with cultists): Shoggoth
+      badConsequence = BadConsequence.newNumberOfTreasures("Pierdes 2 niveles.",2,0,0)
+      prize = Prize.new(4,2)
+      @unusedMonsters << Monster.new("Shoggoth",16,badConsequence,prize,-4)
+
+      # Monster (with cultists): Lolitagooth
+      badConsequence = BadConsequence.newNumberOfTreasures("Pintalabios negro. Pierdes 2 niveles.",2,0,0)
+      prize = Prize.new(1,1)
+      @unusedMonsters << Monster.new("Lolitagooth",2,badConsequence,prize,3)
+
+    end
+
+    # Private method which initializes the cultist's deck of cards.
+    def initCultistCardDeck
+      @unusedCultist << Cultist.new("Sectario",1)
+      @unusedCultist << Cultist.new("Sectario",2)
+      @unusedCultist << Cultist.new("Sectario",1)
+      @unusedCultist << Cultist.new("Sectario",2)
+      @unusedCultist << Cultist.new("Sectario",1)
+      @unusedCultist << Cultist.new("Sectario",1)
     end
 
     # Private method which shuffles treasures' deck of cards
@@ -280,9 +330,14 @@ module Model
       @unusedTreasures.shuffle!
     end
 
-    # Private mehod which shuffles monsters' deck of cards
+    # Private method which shuffles monsters' deck of cards
     def shuffleMonsters
       @unusedMonsters.shuffle!
+    end
+
+    # Private method which shuffles cultist's deck of cards
+    def shuffleCultists
+      @unusedCultist.shuffle!
     end
 
     #-------------------- PUBLIC METHODS --------------------#
@@ -310,6 +365,12 @@ module Model
       @unusedMonsters.pop
     end
 
+    #Takes a cultist from the top of the deck
+    # @return Cultist taken
+    def nextCultist
+      @unusedCultist.pop
+    end
+
     # Returns a treasure to the used treasures' deck
     # @param t [Treasure] Treasure to add
     def giveTreasureBack(t)
@@ -326,8 +387,10 @@ module Model
     def initCards
       initMonsterCardDeck
       initTreasureCardDeck
+      initCultistCardDeck
       shuffleTreasures
       shuffleMonsters
+      shuffleCultists
     end 
   end
 end

@@ -36,6 +36,16 @@ module Model
       @kind = kind
     end
 
+    #Get the basic value for the treasure card.
+    def getBasicValue
+      minBonus
+    end
+
+    #Get the special value for the treasure card.
+    def getSpecialValue
+      maxBonus
+    end
+
     # Gets a string with the treasure's info.
     # @return string with information.
     def to_s

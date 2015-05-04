@@ -10,6 +10,7 @@ require "singleton"
 
 require_relative "../lib/CardDealer.rb"
 require_relative "../lib/Player.rb"
+require_relative "../lib/CultistPlayer.rb"
 
 # Module Model.
 # Napakalaki game's model.
@@ -75,6 +76,12 @@ module Model
     def combat
       result = @currentPlayer.combat(@currentMonster)
       CardDealer.instance.giveMonsterBack(currentMonster)
+      if result == CombatResult::LOSEANDCONVERT
+        cultist = CardDealer.instance.nextCultist
+        newCultistPlayer = CultistPlayer.new(@currentPlayer,cultist)
+        @currentPlayer = newCultistPlayer
+        @players[@currentPlayerIndex] = @currentPlayer
+      end
       result
     end
 

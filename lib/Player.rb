@@ -115,6 +115,20 @@ module Model
       result = treasures.inject(0){|sum,t| sum += t.goldCoins} / 1000.0
       result
     end
+
+    # Method that judges if a common player should become a cultist player.
+    # @return true, if and only if player should convert.
+    def shouldConvert
+      Dice.instance.nextNumber == 6
+    end
+
+    # Get the level of his oponent according to the player state.
+    # @param monster Player's oponent.
+    # @return Oponent's level for a combat.
+    def getOponentLevel(monster)
+      monster.getBasicValue
+    end
+
     
     #-------------- PUBLIC METHODS --------------#
 
@@ -136,7 +150,7 @@ module Model
       # the player wins.
       # Otherwise a dice is rolled. If the dice return 5 or 6
       # the player can scape. Else the player loses the combat.
-      if getCombatLevel > monster.combatLevel
+      if getCombatLevel > getOponentLevel(monster)
         applyPrize(monster.prize)
         combatResult = @level < 10? CombatResult::WIN : CombatResult::WINANDWINGAME
       else
@@ -148,7 +162,11 @@ module Model
           combatResult = CombatResult::LOSEANDDIE
         else
           applyBadConsequence(monster.badCons)
-          combatResult = CombatResult::LOSE
+          if shouldConvert
+            combatResult = CombatResult::LOSEANDCONVERT
+          else
+            combatResult = CombatResult::LOSE
+          end
         end
       end
       # Discard the necklace if it is a visible treasure

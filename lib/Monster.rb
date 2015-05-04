@@ -28,12 +28,24 @@ module Model
     # @param level [int] Monster's level.
     # @param bc    [BadConsequence] Bad consequence of losing to the monster.
     # @param prize [Prize] Prize for winning to the monster.
-    def initialize(name, level, bc, prize)
+    def initialize(name, level, bc, prize, levelChange = 0)
       @name = name
       @combatLevel = level
       @badCons = bc
       @prize = prize
+      @levelChangeAgainstCultistPlayer = levelChange
     end
+
+    #Get the basic value for the monster card.
+    def getBasicValue
+      combatLevel 
+    end
+
+    #Get the special value for the monster card.
+    def getSpecialValue
+      combatLevel + levelChangeAgainstCultistPlayer
+    end
+
 
     # Gets a string with the monster's info.
     # @return string with information.
