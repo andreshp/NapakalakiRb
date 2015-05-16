@@ -265,12 +265,14 @@ module Model
       levels = computeGoldCoinsValue(visible)
       levels += computeGoldCoinsValue(hidden)
       canBuy = canIBuyLevels(levels)
+      copyVis = visible.clone
+      copyHid = hidden.clone
       if canBuy
         increaseLevels(levels.to_i)
-        for t in visible
+        for t in copyVis
           discardVisibleTreasure(t)
         end
-        for t in hidden
+        for t in copyHid
           discardHiddenTreasure(t)
         end
       end
