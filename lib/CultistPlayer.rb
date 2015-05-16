@@ -14,7 +14,7 @@ module Model
   # Cultist Player class.
   # Class that extends the class Player introducing a new kind  of player
   # that can be obtained in some situations of Napakalaki game.
-  class CultistPlayer
+  class CultistPlayer < Player
     #Static attribute that shows the current number of cultist players.
     @@totalCultistPlayers = 0
 
@@ -41,9 +41,9 @@ module Model
     # @param player Player to make cultist.
     # @param cultist Cultist card to apply to the player.
     def initialize(player,cultist)
-        super
+        copy(player)
         @myCultistCard = cultist
-        totalCultistPlayers += 1
+        @@totalCultistPlayers += 1
     end
 
     #Get the combat level for a cultist player.
@@ -51,7 +51,13 @@ module Model
       super + @myCultistCard.getSpecialValue
     end
 
+    def self.getTotalCultistPlayers
+      @@totalCultistPlayers
+    end
 
+    def to_s
+      super + "\n[JUGADOR SECTARIO]: " + @myCultistCard.to_s
+    end
 
     
   end

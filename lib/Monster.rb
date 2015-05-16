@@ -43,14 +43,14 @@ module Model
 
     #Get the special value for the monster card.
     def getSpecialValue
-      combatLevel + levelChangeAgainstCultistPlayer
+      combatLevel + @levelChangeAgainstCultistPlayer
     end
 
 
     # Gets a string with the monster's info.
     # @return string with information.
     def to_s
-      "Name = #{@name}\nLevel = #{@combatLevel}\nPrize = [" + @prize.to_s + "] \nBad Consequence = [\n" + @badCons.to_s(10) + "\n]"
+      "Name = #{@name}\nLevel = #{@combatLevel}\nCultist Change Level = #{@levelChangeAgainstCultistPlayer}\nPrize = [" + @prize.to_s + "] \nBad Consequence = " + @badCons.to_s() + "\n"
     end
   end
 end

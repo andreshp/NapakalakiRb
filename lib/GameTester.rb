@@ -49,12 +49,15 @@ class GameTester
               puts "\n\n Has perdido el combate, te toca cumplir el mal rollo"
             when Model::CombatResult::LOSEANDESCAPE then
               puts "\n\n Perdiste el combate pero has logrado escapar"
+            when Model::CombatResult::LOSEANDCONVERT then
+              puts "\n\n Has perdido el combate y te has convertido en sectario"
             when Model::CombatResult::LOSEANDDIE then
               puts "\n\n Perdiste el combate y ademas estas muerto"
            end #case
            if (combatResult != Model::CombatResult::WINANDWINGAME) then
             begin #Hasta que se avance de turno 
               puts "******* ******* ******* ******* ******* ******* *******"
+              currentPlayer=@game.getCurrentPlayer() 
               puts "\n\n Turno de: " + currentPlayer.to_s()
               command = getCommandAfterFighting()
               command = processCommand(command, currentPlayer)

@@ -30,7 +30,11 @@ module Model
 
     # Get the special value for the cultist card.
     def getSpecialValue
-        return getBasiclValue*CultistPlayer.getTotalCultistPlayers
+        return getBasicValue*CultistPlayer.getTotalCultistPlayers
+    end
+
+    def to_s
+      puts = "Name = #{@name}, Gained Levels = #{@gainedLevels}"
     end
   end
 end

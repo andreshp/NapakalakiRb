@@ -24,7 +24,7 @@ module Model
   class Player
 
     # Getters name of the player, if he is dead, his level and his visible and hidden treasures.
-    attr_reader :dead, :name, :level, :visibleTreasures, :hiddenTreasures
+    attr_reader :dead, :name, :level, :visibleTreasures, :hiddenTreasures, :pendingBadConsequence
 
     @@MAXHIDDENTREASURES = 4
 
@@ -133,6 +133,16 @@ module Model
     #-------------- PUBLIC METHODS --------------#
 
     public
+
+    # Copy constructor
+    def copy(player)
+      @name = player.name
+      @level = player.level
+      @dead = player.dead
+      @hiddenTreasures = player.hiddenTreasures
+      @visibleTreasures = player.visibleTreasures
+      @pendingBadConsequence = player.pendingBadConsequence
+    end
     
     # Apply the prize won fighting with a monster.
     # @param [Prize] Prize to apply.
