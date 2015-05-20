@@ -342,11 +342,11 @@ module Model
       @name
     end
 
-#        def setVisibleTreasureList(treasures)
-#            @visibleTreasures = treasures
-#        end
-#        def setHiddenTreasureList(treasures)
-#            @hiddenTreasures = treasures
-#        end
+    def setVisibleTreasureList(treasures)
+        @visibleTreasures = treasures
+    end
+    def setHiddenTreasureList(treasures)
+        @hiddenTreasures = treasures
+    end
   end
 end

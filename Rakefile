@@ -4,7 +4,7 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-task :default => 'test:runTeacher'
+task :default => 'examen:run'
 
 # Test programs
 namespace :test do
@@ -24,7 +24,7 @@ end
 namespace :examen do
   desc "Ejecutar el examen"
   task :run do
-    sh "ruby ./lib/examen2.rb"
+    sh "ruby ./test/examen4.rb"
   end
 end
 

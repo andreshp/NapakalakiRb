@@ -14,11 +14,29 @@ class BadConsequence
 
   attr_reader :text, :levels
 
+  def isEmpty
+    true
+  end
+
+  def kills
+    false
+  end
+
+  def substractVisibleTreasure(t)
+  end
+
+  def substractHiddenTreasure(t)
+  end
+
   def to_s
     "Esto es un mal rollo con el siguiente contenido:" +
     "\n\tText = #{@text}" +
     ((@levels > 0)?("\n\tLevels = #{@levels}"):(""))
   end
+
+  def adjustToFitTreasureLists(v, h)
+  end
+
 end
 
 require_relative './BadConsequenceNumberTreasures.rb'
