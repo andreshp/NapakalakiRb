@@ -18,7 +18,7 @@ module Model
     #Static attribute that shows the current number of cultist players.
     @@totalCultistPlayers = 0
 
-    protected
+    public #protected
 
     # @see Player::ShouldConvert
     def shouldConvert

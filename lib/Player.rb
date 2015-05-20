@@ -106,7 +106,7 @@ module Model
     
     #------------- PROTECTED METHODS -------------#
 
-    protected
+    public #protected
 
     # Method that compute the total amount of levels the player can buy with the given treasures.
     # @param treasures [Array Treasures] Array with the treasures.
@@ -328,6 +328,19 @@ module Model
       @name + " Level: " + @level.to_s + " Combat Level: " + getCombatLevel.to_s +
       "\nMal rollo pendiente: " + 
       ((@pendingBadConsequence==nil||@pendingBadConsequence.isEmpty)?("OK"):("\n"+@pendingBadConsequence.to_s))
+    end
+
+    def to_s_xl
+      str = to_s
+      str += "\nTesoros visibles:\n\n"
+      getVisibleTreasures.each do |i|
+          str += "#{i}\n\n"
+      end
+      str += "\nTesoros ocultos:\n\n"
+      getHiddenTreasures.each do |i|
+        str += "#{i}\n\n"
+      end
+      str
     end
 
     #----------------- GET METHODS FOR GAMETESTER -----------------#

@@ -6,7 +6,7 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-require_relative '../lib/Player.rb'
+#require_relative '../lib/Player.rb'
 require_relative '../lib/CultistPlayer.rb'
 require_relative '../lib/Cultist.rb'
 require_relative '../lib/BadConsequence.rb'
@@ -23,35 +23,20 @@ module Model
 
         end
 
-        def self.run ## CLASS METHOD run
+        def self.run2 ## CLASS METHOD run
 
         end
 
         def run ## INSTANCE METHOD run
             p = Player.new("Jugador examen.")
+
             cult1 = Cultist.new("SECTARIO 1",2)
-            psec1 = CultistPlayer.new(p,cult1)
+            p1 = Player.new("Jugador sectario")
+            psec1 = CultistPlayer.new(p1,cult1)
 
-            puts "Inicio:\n\n"
-            puts p.to_s
-            puts "Tesoros visibles:\n\n"
-            p.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            p.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
-            puts psec1.to_s
-            puts "Tesoros visibles:\n\n"
-            psec1.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            psec1.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
+            cult2 = Cultist.new("SECTARIO 2",1)
+            p2 = Player.new("Jugador sectario 2")
+            psec2 = CultistPlayer.new(p2,cult2)
 
     ##############################################
             t1 = Model::Treasure.new("Botas de investigación",600,3,4,Model::TreasureKind::SHOE)
@@ -61,7 +46,7 @@ module Model
             t5 = Model::Treasure.new("Otros tesoros1",400,2,3,Model::TreasureKind::HELMET)
             t6 = Model::Treasure.new("Otros tesoros2",600,5,6,Model::TreasureKind::ARMOR)
             t7 = Model::Treasure.new("Otros tesoros3",700,4,8,Model::TreasureKind::ONEHAND)
-            t8 = Model::Treasure.new("Otros tesoros4",700,4,8,Model::TreasureKind::ONEHAND)
+            t8 = Model::Treasure.new("Otros tesoros4",800,4,8,Model::TreasureKind::ONEHAND)
             hidden=Array.new
             hidden << t1
             hidden << t2
@@ -70,73 +55,24 @@ module Model
             visible = Array.new
             visible << t5
             visible << t6
-            visiblesec = Array.new
-            visiblesec << t7
-            visiblesec << t8
+            visible << t7
+            visible << t8
 
-            p.setVisibleTreasureList(visible)
-            p.setHiddenTreasureList(hidden)
-            psec1.setVisibleTreasureList(visiblesec)
-
+            p.setVisibleTreasureList(visible.clone)
+            p.setHiddenTreasureList(hidden.clone)
+            psec1.setVisibleTreasureList(visible.clone)
+            psec1.setHiddenTreasureList(hidden.clone)
+            psec2.setVisibleTreasureList(visible.clone)
+            psec2.setHiddenTreasureList(hidden.clone)
 
             puts "Tras añadir tesoros:\n\n"
-            puts p.to_s
-            puts "Tesoros visibles:\n\n"
-            p.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            p.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
-            puts psec1.to_s
-            puts "Tesoros visibles:\n\n"
-            psec1.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            psec1.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
-        #############################################
-            cult2 = Cultist.new("Sectario 2",1)
-            psec2 = CultistPlayer.new(p,cult2)
-
-            puts "Tras añadir segundo sectario:\n\n"
-            puts p.to_s
-            puts "Tesoros visibles:\n\n"
-            p.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            p.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
-            puts psec1.to_s
-            puts "Tesoros visibles:\n\n"
-            psec1.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            psec1.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
-            puts psec2.to_s
-            puts "Tesoros visibles:\n\n"
-            psec1.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            psec2.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
+            puts p.to_s_xl  
+            puts psec1.to_s_xl
+            puts psec2.to_s_xl
+           
         #############################################
 
-
+            [p,psec2]
         end
 
     end
@@ -146,7 +82,10 @@ module Model
         end
 
         def run
-          super
+          r = super
+          psec2 = r.pop
+          p = r.pop
+          puts p.to_s_xl
           # Monster: Bicéfalo
           badConsequence = BadConsequenceSpecificTreasures.new(
             "Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.",3,
@@ -175,31 +114,13 @@ module Model
 
         #################################################
             p.buyLevels(p.getVisibleTreasures,[])
-            psec2.buyLevels(p2.getVisibleTreasures,[])
+            psec2.buyLevels(psec2.getVisibleTreasures,[])
             puts "Tras comprar tesoros:\n\n"
 
-            puts p.to_s
-            puts "Tesoros visibles:\n\n"
-            p.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            p.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
-            puts psec2.to_s
-            puts "Tesoros visibles:\n\n"
-            psec1.getVisibleTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-            puts "Tesoros ocultos:\n\n"
-            psec2.getHiddenTreasures.each do |i|
-                puts i.to_s + "\n\n"
-            end
-
+            puts p.to_s_xl
+            puts psec2.to_s_xl
         end
 
     end
+    ExamenHijo.new.run
 end
-#ExamenHijo.new.run
