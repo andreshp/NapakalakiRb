@@ -60,7 +60,7 @@ module Model
     def decreaseLevels(levels)
       @level = @level - levels >= 1? @level-levels : 1 
     end
-    
+
     # Set a bad consequence as pending.
     # @param badCons [BadConsequence] Bad Consequence to assign as pending.
     def setPendingBadConsequence(badCons)
