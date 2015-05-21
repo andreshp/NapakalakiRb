@@ -60,7 +60,7 @@ module Model
     def decreaseLevels(levels)
       @level = @level - levels >= 1? @level-levels : 1 
     end
-    
+
     # Set a bad consequence as pending.
     # @param badCons [BadConsequence] Bad Consequence to assign as pending.
     def setPendingBadConsequence(badCons)
@@ -106,7 +106,7 @@ module Model
     
     #------------- PROTECTED METHODS -------------#
 
-    public #protected
+    protected
 
     # Method that compute the total amount of levels the player can buy with the given treasures.
     # @param treasures [Array Treasures] Array with the treasures.

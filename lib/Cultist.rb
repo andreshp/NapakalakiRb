@@ -6,8 +6,8 @@
 # Programación Dirigida y Orientada a Objetos - Ruby Napakalaki
 #######################################################################
 
-require_relative 'Player.rb'
-require_relative 'CultistPlayer.rb'
+require_relative '../lib/Player.rb'
+require_relative '../lib/CultistPlayer.rb'
 
 # Module Model.
 # Napakalaki game's model.
