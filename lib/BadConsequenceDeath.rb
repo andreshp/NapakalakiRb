@@ -32,6 +32,7 @@ class BadConsequenceDeath < BadConsequence
   end
 
   def adjustToFitTreasureLists(v, h)
+    BadConsequenceDeath.new("Queda por cumplir:")
   end
 
 end
