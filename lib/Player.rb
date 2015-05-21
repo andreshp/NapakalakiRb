@@ -356,10 +356,10 @@ module Model
     end
 
     def setVisibleTreasureList(treasures)
-        @visibleTreasures = treasures
+        @visibleTreasures = treasures.clone
     end
     def setHiddenTreasureList(treasures)
-        @hiddenTreasures = treasures
+        @hiddenTreasures = treasures.clone
     end
   end
 end

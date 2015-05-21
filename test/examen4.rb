@@ -58,12 +58,12 @@ module Model
             visible << t7
             visible << t8
 
-            p.setVisibleTreasureList(visible.clone)
-            p.setHiddenTreasureList(hidden.clone)
-            psec1.setVisibleTreasureList(visible.clone)
-            psec1.setHiddenTreasureList(hidden.clone)
-            psec2.setVisibleTreasureList(visible.clone)
-            psec2.setHiddenTreasureList(hidden.clone)
+            p.setVisibleTreasureList(visible)
+            p.setHiddenTreasureList(hidden)
+            psec1.setVisibleTreasureList(visible)
+            psec1.setHiddenTreasureList(hidden)
+            psec2.setVisibleTreasureList(visible)
+            psec2.setHiddenTreasureList(hidden)
 
             puts "Tras añadir tesoros:\n\n"
             puts p.to_s_xl  
