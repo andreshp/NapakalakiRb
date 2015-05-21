@@ -106,7 +106,7 @@ module Model
     
     #------------- PROTECTED METHODS -------------#
 
-    public #protected
+    protected
 
     # Method that compute the total amount of levels the player can buy with the given treasures.
     # @param treasures [Array Treasures] Array with the treasures.
